@@ -7,6 +7,22 @@
     <artifactId>spring-petclinic</artifactId>
     <version>2.2.0.BUILD-SNAPSHOT</version>
  <developers>
+ <developer>
+      <id>luctorgom</id>
+      <name>Lucia Torres Gomez</name>
+      <email>luctorgom@alum.us.es</email>
+      <url>http://www.example.com/jdoe</url>
+      <organization>ACME</organization>
+      <organizationUrl>http://www.example.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>Spain/Seville</timezone>
+      <properties>
+        <picUrl>http://www.example.com/jdoe/pic</picUrl>
+      </properties>
+    </developer>
     <developer>
       <id>lausalbra</id>
       <name>Laura</name>
