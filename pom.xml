@@ -23,6 +23,22 @@
         <picUrl>http://www.example.com/jdoe/pic</picUrl>
       </properties>
     </developer>
+    <developer>
+      <id>danricost</id>
+      <name>Daniel Rico Ostos</name>
+      <email>danricost@alum.us.es</email>
+      <url>http://www.example.com/jdoe</url>
+      <organization>ACME</organization>
+      <organizationUrl>http://www.example.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>Spain/Seville</timezone>
+      <properties>
+        <picUrl>https://c.stocksy.com/a/GkZ400/z9/1090720.jpg</picUrl>
+      </properties>
+    </developer>
   </developers>
     <parent>
         <groupId>org.springframework.boot</groupId>
