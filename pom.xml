@@ -3,9 +3,9 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.springframework.samples</groupId>
-    <artifactId>spring-petclinic</artifactId>
-    <version>2.2.0.BUILD-SNAPSHOT</version>
+    <groupId>es.us.psg2</groupId>
+    <artifactId>spring-petclinic.psg2.2021-G8-83</artifactId>
+    <version>1.0.0</version>
  <developers>
  <developer>
       <id>luctorgom</id>
@@ -71,13 +71,29 @@
         <picUrl>http://www.example.com/jdoe/pic</picUrl>
       </properties>
     </developer>
+    <developer>
+      <id>gonzalort7</id>
+      <name>Gonzalo Rodriguez Terron</name>
+      <email>rodriguez.terron.gonzalo@gmail.com</email>
+      <url>http://www.example.com/jdoe</url>
+      <organization>ACME</organization>
+      <organizationUrl>http://www.example.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>Spain/Seville</timezone>
+      <properties>
+        <picUrl>http://www.example.com/jdoe/pic</picUrl>
+      </properties>
+    </developer>
   </developers>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
-    <name>petclinic</name>
+    <name>PSG2-2021-G8-83 Petclinic</name>
 
     <properties>
 
