@@ -45,11 +45,6 @@
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Error</span>
 				</petclinic:menuItem>
-				<petclinic:menuItem active="${name eq 'localizacion'}" url="/localizacion"
-					title="localizacion">
-					<span class="" aria-hidden="true"></span>
-					<span>Localizacion</span>
-				</petclinic:menuItem>
 
 			</ul>
 
