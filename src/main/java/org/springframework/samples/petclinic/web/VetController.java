@@ -16,13 +16,27 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Specialty;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
+import org.springframework.samples.petclinic.service.SpecialtyService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 /**
  * @author Juergen Hoeller
@@ -34,10 +48,14 @@ import java.util.Map;
 public class VetController {
 
 	private final VetService vetService;
+	
+	private final SpecialtyService specialtyService;
 
 	@Autowired
-	public VetController(VetService clinicService) {
+	public VetController(VetService clinicService,
+			SpecialtyService specialtyService) {
 		this.vetService = clinicService;
+		this.specialtyService = specialtyService;
 	}
 
 	@GetMapping(value = { "/vets" })
@@ -50,6 +68,62 @@ public class VetController {
 		model.put("vets", vets);
 		return "vets/vetList";
 	}
+	
+	@GetMapping(value = { "/vets/new" })
+	public String newVetGet(Model model) {
+		
+		Vet vet = new Vet();
+		model.addAttribute("vet", vet);
+		
+		return "vets/createOrUpdateVetForm";
+	}
+	
+	@PostMapping(value = { "/vets/new" })
+	public String newVetPost(@Valid Vet vet, BindingResult result, 
+			@RequestParam("specialties") Optional<Collection<Specialty>> specialties, Model model) {
+		
+		if(result.hasErrors()) {
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			model.addAttribute("vet", vet);
+			return "vets/createOrUpdateVetForm";
+		}else {
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			vetService.save(vet);
+			return "redirect:/vets";
+		}
+		
+	}
+	
+	@GetMapping(value = { "/vets/edit/{vetId}" })
+	public String editVetGet(@PathVariable("vetId") int vetId, Model model) {
+		
+		Optional<Vet> optVet = vetService.findById(vetId);
+		
+		if(!optVet.isPresent()) {
+			return "redirect:/vets";
+		}else {
+			model.addAttribute("vet", optVet.get());
+			return "vets/createOrUpdateVetForm";
+		}
+		
+	}
+	
+	@PostMapping(value = { "/vets/edit/{vetId}" })
+	public String editVetPost(@Valid Vet vet, BindingResult result, @PathVariable("vetId") int vetId, 
+			@RequestParam("specialties") Optional<Collection<Specialty>> specialties, Model model) {
+		
+		if(result.hasErrors()) {
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			model.addAttribute("vet", vet);
+			return "vets/createOrUpdateVetForm";
+		}else {
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			vet.setId(vetId);
+			vetService.save(vet);
+			return "redirect:/vets";
+		}
+		
+	}
 
 	@GetMapping(value = { "/vets.xml"})
 	public @ResponseBody Vets showResourcesVetList() {
@@ -59,6 +133,11 @@ public class VetController {
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		return vets;
+	}
+	
+	@ModelAttribute("especialidades")
+	public Collection<Specialty> getListaEspecialidades(){
+		return specialtyService.findAll();
 	}
 
 }
