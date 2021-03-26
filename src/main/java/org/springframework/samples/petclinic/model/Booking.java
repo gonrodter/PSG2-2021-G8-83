@@ -24,7 +24,7 @@ public class Booking extends BaseEntity{
 	@ManyToOne(optional=false)
 	private Owner owner;
 	
-	@OneToOne(optional=false)
+	@ManyToOne(optional=false)
 	private Pet pet;
 
 	public LocalDate getCheckIn() {
