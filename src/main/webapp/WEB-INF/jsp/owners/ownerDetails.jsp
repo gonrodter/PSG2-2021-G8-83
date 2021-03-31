@@ -41,7 +41,7 @@
     <br/>
     <br/>
     <br/>
-    <h2>Pets and Visits</h2>
+    <h2>Pets, Visits y Reservas</h2>
 
     <table class="table table-striped">
         <c:forEach var="pet" items="${owner.pets}">
@@ -73,8 +73,8 @@
                         </c:forEach>
                         <thead>
                         <tr>
-                            <th>Booking Check In</th>
-                            <th>Booking Check Out</th>
+                            <th>Fecha de Entrada</th>
+                            <th>Fecha de Salida</th>
                         </tr>
                         </thead>
                         <c:forEach var="booking" items="${pet.booking}">

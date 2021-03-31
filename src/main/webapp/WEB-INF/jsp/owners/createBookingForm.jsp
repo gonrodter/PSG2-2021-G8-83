@@ -23,12 +23,12 @@
 
         <form:form modelAttribute="booking" class="form-horizontal">
             <div class="form-group has-feedback">
-                <petclinic:inputField label="Check In" name="checkIn"/>
-                <petclinic:inputField label="Check Out" name="checkOut"/>
+                <petclinic:inputField label="Fecha de Entrada" name="checkIn"/>
+                <petclinic:inputField label="Fecha de Salida" name="checkOut"/>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-default" type="submit">Add Booking</button>
+                    <button class="btn btn-default" type="submit">Añadir reserva</button>
                 </div>
             </div>
         </form:form>
