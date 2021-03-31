@@ -103,7 +103,7 @@
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(bookingUrl)}">Add Booking</a>
+                                <a href="${fn:escapeXml(bookingUrl)}">Añadir Reserva</a>
                             </td>
                         </tr>
                     </table>

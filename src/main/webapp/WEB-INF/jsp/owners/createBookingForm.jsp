@@ -19,7 +19,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h2>Booking</h2>
+        <h2>Reserva</h2>
 
         <form:form modelAttribute="booking" class="form-horizontal">
             <div class="form-group has-feedback">
