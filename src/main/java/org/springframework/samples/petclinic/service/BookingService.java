@@ -25,8 +25,8 @@ private BookingRepository bookingRepository;
     }
 	
 	@Transactional
-	public void findBookingByFecha(LocalDate hoy, int petId) {
-		bookingRepository.findBookingByFecha(hoy, petId);
+	public Booking findBookingByFecha(LocalDate hoy, int petId) {
+		return bookingRepository.findBookingByFecha(hoy, petId);
 	}
 	
 }

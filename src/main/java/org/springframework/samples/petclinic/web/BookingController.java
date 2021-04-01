@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +60,20 @@ public class BookingController {
 			return VIEWS_BOOKINGS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
+			LocalDate hoy=LocalDate.now();
 			Pet pet=petService.findPetById(petId);
-			Owner owner= ownerService.findOwnerById(ownerId);
-			booking.setOwner(owner);
-			booking.setPet(pet);
-			this.bookingService.saveBooking(booking);
-			return "redirect:/owners/find";
+			Booking reservaActiva = this.bookingService.findBookingByFecha(hoy, petId);
+			if(reservaActiva ==null) {
+				Owner owner= ownerService.findOwnerById(ownerId);
+				booking.setOwner(owner);
+				booking.setPet(pet);
+				this.bookingService.saveBooking(booking);
+				return "redirect:/owners/find";
+			}else {
+				return "owners/exceptionBooking";
+			}
+			
+			
 		}
 	}
 
