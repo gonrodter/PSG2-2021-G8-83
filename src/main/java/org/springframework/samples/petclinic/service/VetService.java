@@ -72,5 +72,11 @@ public class VetService {
 	public Optional<Vet> findByFirstNameAndLastName(String firstName, String lastName){
 		return vetRepository.findByFirstNameAndLastName(firstName, lastName);
 	}
-
+	
+	//Añadido por AlvaroSC
+	
+	@Transactional
+	public void deleteVet(final Vet vet)  throws DataAccessException {
+		this.vetRepository.delete(vet);
+    }
 }

@@ -108,6 +108,10 @@ public class Pet extends NamedEntity {
 		visit.setPet(this);
 	}
 	
+	public void deleteVisit(final Visit visit) {
+		this.getVisitsInternal().remove(visit);
+	}
+	
 	protected Set<Booking> getBookingInternal() {
 		if (this.booking == null) {
 			this.booking = new HashSet<>();

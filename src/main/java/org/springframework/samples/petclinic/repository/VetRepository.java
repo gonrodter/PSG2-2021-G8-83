@@ -21,6 +21,7 @@ import java.util.Optional;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.Nullable;
+import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Vet;
 
 /**
@@ -52,4 +53,14 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	
 	Optional<Vet> findByFirstNameAndLastName(String firstName, String lastName) throws DataAccessException;
 
+	
+	
+	//Implementado por AlvaroSC
+	/**
+	 * Delete a <code>Vet</code> to the data store.
+	 * 
+	 * @param Vet the <code>Vet</code> to delete
+	 * @see BaseEntity#isNew
+	 */
+	void delete(Vet vet);
 }

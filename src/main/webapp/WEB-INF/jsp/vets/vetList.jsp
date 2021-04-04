@@ -28,6 +28,14 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
+                 <td class="text-left">
+                	<a href="/vets/${vet.id}/deleteVet">
+                		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                	</a>
+                </td> 
+                
+                
+                
                 <td>
                 	<spring:url value="vets/edit/{vetId}" var="editUrl">
 				    	<spring:param name="vetId" value="${vet.id}"/>

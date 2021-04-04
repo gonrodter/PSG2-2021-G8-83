@@ -19,11 +19,13 @@ import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.User;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 
 /**
@@ -32,14 +34,8 @@ import org.springframework.samples.petclinic.repository.OwnerRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
-public interface OwnerRepository extends Repository<Owner, Integer> {
+public interface OwnerRepository extends Repository<Owner, Integer>,CrudRepository<Owner, Integer> {
 
-	/**
-	 * Save an <code>Owner</code> to the data store, either inserting or updating it.
-	 * @param owner the <code>Owner</code> to save
-	 * @see BaseEntity#isNew
-	 */
-	void save(Owner owner) throws DataAccessException;
 
 	/**
 	 * Retrieve <code>Owner</code>s from the data store by last name, returning all owners
@@ -63,5 +59,12 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	
 	public Owner findByUser(User username) throws DataAccessException;
 
+	/**
+	 * Delete a <code>Owner</code> to the data store.
+	 * 
+	 * @param Owner the <code>Owner</code> to delete
+	 * @see BaseEntity#isNew
+	 */
+	void delete (Owner owner) throws DataAccessException;
 
 }

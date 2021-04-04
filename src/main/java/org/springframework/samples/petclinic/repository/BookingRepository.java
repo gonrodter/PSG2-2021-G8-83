@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Booking;
+import org.springframework.samples.petclinic.model.Visit;
 
 public interface BookingRepository extends CrudRepository<Booking, String> {
 	
@@ -16,4 +18,18 @@ public interface BookingRepository extends CrudRepository<Booking, String> {
 			nativeQuery = true)
 	Booking findBookingByFecha(LocalDate hoy, int petId) throws DataAccessException;
 
+	
+	
+	
+	
+	
+	//Implementado por AlvaroSC
+	/**
+	 * Delete a <code>Booking</code> to the data store.
+	 * 
+	 * @param Booking the <code>Booking</code> to delete
+	 * @see BaseEntity#isNew
+	 */
+	void delete (Booking booking) throws DataAccessException;
+	
 }

@@ -74,9 +74,21 @@ public class PetService {
                 petRepository.save(pet);                
 	}
 
-
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
+	
+	public Visit findVisitsById(int visitId) {
+		return visitRepository.findById(visitId);
+	}
+
+	//Añadido por AlvaroSC
+	
+	@Transactional
+	public void deleteCascada(final Pet p)  throws DataAccessException {
+		this.petRepository.deleteAllVisit(p.getId());
+		//this.petRepository.deleteAllBooking(p.getId());
+		this.petRepository.deletePetRepository(p.getId(), p.getOwner().getId());
+	    }
 
 }

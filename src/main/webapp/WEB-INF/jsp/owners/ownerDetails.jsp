@@ -37,6 +37,11 @@
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Pet</a>
+    
+    <spring:url value="{ownerId}/deleteOwner" var="deleteOwnerUrl">
+        <spring:param name="ownerId" value="${owner.id}"/>
+    </spring:url>
+    <a href="${fn:escapeXml(deleteOwnerUrl)}" class="btn btn-default">Delete Owner</a>
 
     <br/>
     <br/>
@@ -69,6 +74,10 @@
                             <tr>
                                 <td><petclinic:localDate date="${visit.date}" pattern="yyyy-MM-dd"/></td>
                                 <td><c:out value="${visit.description}"/></td>
+                               
+                               
+                                
+                                
                             </tr>
                         </c:forEach>
                         <thead>
@@ -98,6 +107,14 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
                             </td>
+                            
+                            
+                              <td class="text-left">
+                                <a href="/owners/${owner.id}/pets/${pet.id}/deletePet">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </a>
+                            </td> 
+                            
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/booking/new" var="bookingUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
