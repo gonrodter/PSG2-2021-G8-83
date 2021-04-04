@@ -90,14 +90,5 @@ public class PetService {
 		//this.petRepository.deleteAllBooking(p.getId());
 		this.petRepository.deletePetRepository(p.getId(), p.getOwner().getId());
 	    }
-	
-	/**
-	@Transactional
-	public void deleteVisit(Visit visit) {
-		this.petRepository.deleteAllVisit(visit);	
-	}
-	**/
-	
-	
-	
+
 }
