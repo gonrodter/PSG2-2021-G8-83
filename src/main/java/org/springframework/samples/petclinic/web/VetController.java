@@ -24,6 +24,7 @@ import org.springframework.samples.petclinic.service.SpecialtyService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -174,6 +175,24 @@ public class VetController {
 		}
 		
 	}
+	
+	// Añadido por AlvaroSC
+	
+		@GetMapping(value ="/vets/{vetId}/deleteVet")
+	    public String deleteVet(@PathVariable("vetId") final int vetId,final ModelMap model) {
+	        final Optional<Vet> vet =this.vetService.findById(vetId);
+	        if (vet.isPresent()) {
+	            this.vetService.deleteVet(vet.get());
+	            model.addAttribute("message","Vet deleted");
+	            //La redireccion
+	            final Collection<Vet> results = this.vetService.findVets();
+	            model.put("selections", results);
+	        }
+	        return this.showVetList(model);
+	    }
+	
+	
+	
 
 	@GetMapping(value = { "/vets.xml"})
 	public @ResponseBody Vets showResourcesVetList() {

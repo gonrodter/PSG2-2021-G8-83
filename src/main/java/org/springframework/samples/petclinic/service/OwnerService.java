@@ -72,4 +72,24 @@ public class OwnerService {
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
 
+	
+	//Aladido por AlvaroSC
+		//Solo borra el usuario que esta logueado en el momento
+		// la otra version borra cualquier usuario pasado como parametro
+		//
+	
+	@Transactional
+	public void deleteUserLogued(final Owner ow)  throws DataAccessException {
+		this.userService.delete(ow.getUser());
+		this.ownerRepository.deleteById(ow.getId());
+	}
+	@Transactional
+	public void deleteOwner(final Owner ow)  throws DataAccessException {
+		this.ownerRepository.delete(ow);
+	}
+		
+	@Transactional
+	public Collection<Owner> findAll() {
+		return (Collection<Owner>) this.ownerRepository.findAll();
+	}
 }
