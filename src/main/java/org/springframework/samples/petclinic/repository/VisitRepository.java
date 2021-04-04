@@ -56,21 +56,6 @@ public interface VisitRepository extends Repository<Visit, Integer> {
 	 * 	if not found
 	 */
 	Visit findById (int id) throws DataAccessException;
-	
-	
-	
-	
-	//Implementado por AlvaroSC
-	/**
-	 * Delete a <code>Visit</code> to the data store.
-	 * 
-	 * @param visit the <code>Visit</code> to delete
-	 * @see BaseEntity#isNew
-	 */
-	//void deleteVisit (Visit visit) throws DataAccessException;
-	
-	
-	
-	
+
 	
 }
