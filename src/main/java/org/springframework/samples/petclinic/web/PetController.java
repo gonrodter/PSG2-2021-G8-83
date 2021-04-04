@@ -161,16 +161,6 @@ public class PetController {
           this.petService.deleteCascada(p);
           return "redirect:/owners/{ownerId}";
         }    
-        
-        
-    /**    
-    @GetMapping(value = "/pets/{petId}/deletePet")
-    public String deletePet(@PathVariable("petId") final int petId,final ModelMap model) {
-    	final Pet pet =this.petService.findPetById(petId);
-    	owner.removePet(pet);
-        this.petService.deletePet(pet);
-        return "redirect:/owners/{ownerId}";
-    }
-       **/ 
+
     
 }
