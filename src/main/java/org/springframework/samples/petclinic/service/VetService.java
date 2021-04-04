@@ -77,6 +77,6 @@ public class VetService {
 	
 	@Transactional
 	public void deleteVet(final Vet vet)  throws DataAccessException {
-		this.vetRepository.delete(vet);;
+		this.vetRepository.delete(vet);
     }
 }
