@@ -93,19 +93,6 @@ public class VisitController {
 		model.put("visits", this.petService.findPetById(petId).getVisits());
 		return "visitList";
 	}
-	
-	// Añadido por AlvaroSC
-    /**
-    @GetMapping(value = "/owners/{ownerId}/pets/{petId}/deleteVisit/{visitId}")
-    public String deleteVisit(@PathVariable("visitId") final int visitId,final Pet pet,
-    		final ModelMap model) {
-    	
-    	final Visit visit = this.petService.findVisitsById(visitId);
-    	pet.deleteVisit(visit);
-    	this.petService.deleteVisit(visit);
-        return "redirect:/owners/{ownerId}";
-    }
-	
-	**/
+
 
 }
