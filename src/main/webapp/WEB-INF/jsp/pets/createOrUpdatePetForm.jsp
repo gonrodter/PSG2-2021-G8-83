@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <petclinic:layout pageName="owners">
     <jsp:attribute name="customScript">
@@ -36,7 +37,9 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <c:choose>
                         <c:when test="${pet['new']}">
-                            <button class="btn btn-default" type="submit">Add Pet</button>
+
+                            <button class="btn btn-default" type="submit">Añadir Mascota</button>
+
                         </c:when>
                         <c:otherwise>
                             <button class="btn btn-default" type="submit">Update Pet</button>
