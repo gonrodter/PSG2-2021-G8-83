@@ -188,7 +188,7 @@ public class VetController {
 	            final Collection<Vet> results = this.vetService.findVets();
 	            model.put("selections", results);
 	        }
-	        return this.showVetList(model);
+	        return "redirect:/vets";
 	    }
 	
 	

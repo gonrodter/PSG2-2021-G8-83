@@ -37,9 +37,11 @@
 				    </spring:url>
 				    <a href="${fn:escapeXml(editUrl)}">Editar Veterinario</a>
 				    
-				    <a style="margin-left:20px" href="/vets/${vet.id}/deleteVet">
-                		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                	</a>
+				    <spring:url value="vets/{vetId}/deleteVet" var="delete">
+				    	<spring:param name="vetId" value="${vet.id}"/>
+				    </spring:url>
+				    <a style="margin-left:20px" href="${fn:escapeXml(delete)}">Eliminar Veterinario</a>
+				    
                 </td>
             </tr>
         </c:forEach>
