@@ -16,13 +16,28 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Specialty;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
+import org.springframework.samples.petclinic.repository.VetRepository;
+import org.springframework.samples.petclinic.service.SpecialtyService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 /**
  * @author Juergen Hoeller
@@ -34,10 +49,14 @@ import java.util.Map;
 public class VetController {
 
 	private final VetService vetService;
+	
+	private final SpecialtyService specialtyService;
 
 	@Autowired
-	public VetController(VetService clinicService) {
+	public VetController(VetService clinicService,
+			SpecialtyService specialtyService) {
 		this.vetService = clinicService;
+		this.specialtyService = specialtyService;
 	}
 
 	@GetMapping(value = { "/vets" })
@@ -50,6 +69,130 @@ public class VetController {
 		model.put("vets", vets);
 		return "vets/vetList";
 	}
+	
+	@GetMapping(value = { "/vets/new" })
+	public String newVetGet(Model model) {
+		
+		Vet vet = new Vet();
+		model.addAttribute("vet", vet);
+		
+		return "vets/createOrUpdateVetForm";
+	}
+	
+	@PostMapping(value = { "/vets/new" })
+	public String newVetPost(@Valid Vet vet, BindingResult result, 
+			@RequestParam("specialties") Optional<Collection<Specialty>> specialties, Model model) {
+		
+		// si existe algun vaterinario en la BD que tenga el mismo nombre y apellidos que vet, condicion=true
+		boolean condicion = vetService.findByFirstNameAndLastName(vet.getFirstName(), vet.getLastName()).isPresent();
+		
+		if(result.hasErrors()) {
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			model.addAttribute("vet", vet);
+			return "vets/createOrUpdateVetForm";
+		}else if(condicion){
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			model.addAttribute("vet", vet);
+			result.rejectValue("lastName", "ya existe un veterinario registrado con el mismo nombre y apellido",
+					"ya existe un veterinario registrado con el mismo nombre y apellido");
+			return  "vets/createOrUpdateVetForm";
+		}else {
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			vetService.save(vet);
+			return "redirect:/vets";
+		}
+		
+	}
+	
+	@GetMapping(value = { "/vets/edit/{vetId}" })
+	public String editVetGet(@PathVariable("vetId") int vetId, Model model) {
+		
+		Optional<Vet> optVet = vetService.findById(vetId);
+		
+		if(!optVet.isPresent()) {
+			return "redirect:/vets";
+		}else {
+			model.addAttribute("vet", optVet.get());
+			return "vets/createOrUpdateVetForm";
+		}
+		
+	}
+	
+	@PostMapping(value = { "/vets/edit/{vetId}" })
+	public String editVetPost(@Valid Vet vet, BindingResult result, @PathVariable("vetId") int vetId, 
+			@RequestParam("specialties") Optional<Collection<Specialty>> specialties, Model model) {
+		
+		// si el id del veterinario no existe, redirige a /vets
+		if(!vetService.findById(vetId).isPresent()) return "redirect:/vets";
+		
+		// como el id del veterinario existe, obtenemos el veterinario sin actualizar, el guardado en la BD
+		Vet oldVet = vetService.findById(vetId).get();
+		
+		// si existe algun vaterinario en la BD que tenga el mismo nombre y apellidos que vet, condicion1=true
+		boolean condicion1 = vetService.findByFirstNameAndLastName(vet.getFirstName(), vet.getLastName()).isPresent();
+		
+		// si oldVet y vet tienen mismo nombre y apellidos, es decir, si no se ha actualizado ni el nombre ni
+		// los apellidos, condicion2=true
+		boolean condicion2 = oldVet.getFirstName().equals(vet.getFirstName())
+					&& oldVet.getLastName().equals(vet.getLastName());
+		
+		if(result.hasErrors()) {
+			// si existen errores en los atributos, recuerda las especialidades seleccionadas antes del reenvío del formulario
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			model.addAttribute("vet", vet);
+			return "vets/createOrUpdateVetForm";
+		}else if(condicion1) {
+			// en caso de que halla algun veterianario con el mismo nombre y apellidos
+			
+			if(condicion2) {
+				// si no se ha actualizado ni el nombre ni los apellidos, se habrán actualizado o no el resto de
+				// atributos, por tanto actualizo el veterinario en caso de que sí se hayan actualizado el
+				// resto de atributos
+				if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+				vet.setId(vetId);
+				vetService.save(vet);
+				return "redirect:/vets";
+			}else {
+				// si se ha actualizado el nombre o los apellidos, como ya existe un veterinario en la BD que tiene
+				// ese nombre o apellidos (condicion1), se manda un mensaje diciendo que hay que cambiar el campo del
+				// nombre o de los apellidos
+				if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+				model.addAttribute("vet", vet);
+				result.rejectValue("lastName", "ya existe un veterinario registrado con el mismo nombre y apellido",
+						"ya existe un veterinario registrado con el mismo nombre y apellido");
+				return  "vets/createOrUpdateVetForm";
+			}
+			
+		}
+		
+		else {
+			// si no hay ningun veterinario en la BD con el mismo nombre y apellidos, no hay problema y se actualiza
+			// con exito
+			if(specialties.isPresent()) specialties.get().stream().forEach(e -> vet.addSpecialty(e));
+			vet.setId(vetId);
+			vetService.save(vet);
+			return "redirect:/vets";
+		}
+		
+	}
+	
+	// Añadido por AlvaroSC
+	
+		@GetMapping(value ="/vets/{vetId}/deleteVet")
+	    public String deleteVet(@PathVariable("vetId") final int vetId,final ModelMap model) {
+	        final Optional<Vet> vet =this.vetService.findById(vetId);
+	        if (vet.isPresent()) {
+	            this.vetService.deleteVet(vet.get());
+	            model.addAttribute("message","Vet deleted");
+	            //La redireccion
+	            final Collection<Vet> results = this.vetService.findVets();
+	            model.put("selections", results);
+	        }
+	        return this.showVetList(model);
+	    }
+	
+	
+	
 
 	@GetMapping(value = { "/vets.xml"})
 	public @ResponseBody Vets showResourcesVetList() {
@@ -59,6 +202,11 @@ public class VetController {
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		return vets;
+	}
+	
+	@ModelAttribute("especialidades")
+	public Collection<Specialty> getListaEspecialidades(){
+		return specialtyService.findAll();
 	}
 
 }

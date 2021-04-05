@@ -4,8 +4,8 @@
 
 <petclinic:layout pageName="error">
 
-    <spring:url value="/resources/images/pets.png" var="petsImage"/>
-    <img src="${petsImage}"/>
+    <spring:url value="/resources/images/errorimage.png" var="petsImage"/>
+    <img style = "width: 20%" src="${petsImage}"/>
 
     <h2>Algo ha ocurrido...</h2>
 

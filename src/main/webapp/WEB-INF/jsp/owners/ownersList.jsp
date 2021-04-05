@@ -42,6 +42,13 @@
                     </c:forEach>
                 </td>
                 
+                <sec:authorize access="hasAuthority('admin')">
+                 <td class="text-left">
+                	<a href="/owners/${owner.id}/deleteOwner">
+                		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                	</a>
+                </td>  
+      			 </sec:authorize>
       
 <!--
                 <td> 

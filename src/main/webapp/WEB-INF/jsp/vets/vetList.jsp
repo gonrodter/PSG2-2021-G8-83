@@ -1,6 +1,7 @@
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
@@ -12,6 +13,7 @@
         <tr>
             <th>Nombre</th>
             <th>Especialidades</th>
+
         </tr>
         </thead>
         <tbody>
@@ -26,6 +28,20 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
+                 <td class="text-left">
+                	<a href="/vets/${vet.id}/deleteVet">
+                		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                	</a>
+                </td> 
+                
+                
+                
+                <td>
+                	<spring:url value="vets/edit/{vetId}" var="editUrl">
+				    	<spring:param name="vetId" value="${vet.id}"/>
+				    </spring:url>
+				    <a href="${fn:escapeXml(editUrl)}">Editar Veterinario</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -34,8 +50,13 @@
     <table class="table-buttons">
         <tr>
             <td>
-                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver en XML</a>
+
+                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como XML</a>
+
             </td>            
         </tr>
     </table>
+    
+    <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir Veterinario</a>
+    
 </petclinic:layout>
