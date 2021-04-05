@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <petclinic:layout pageName="owners">
     <h2>Propietarios</h2>
@@ -12,9 +15,9 @@
         <thead>
         <tr>
             <th style="width: 150px;">Nombre</th>
-            <th style="width: 200px;">Dirección</th>
+            <th style="width: 200px;">DirecciÃ³n</th>
             <th>Ciudad</th>
-            <th style="width: 120px">Teléfono</th>
+            <th style="width: 120px">TelÃ©fono</th>
             <th>Mascotas</th>
         </tr>
         </thead>
@@ -42,13 +45,13 @@
                     </c:forEach>
                 </td>
                 
-                <sec:authorize access="hasAuthority('admin')">
+<!--             <sec:authorize access="hasAuthority('admin')">	-->
                  <td class="text-left">
                 	<a href="/owners/${owner.id}/deleteOwner">
                 		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 	</a>
                 </td>  
-      			 </sec:authorize>
+<!--   			</sec:authorize>								-->
       
 <!--
                 <td> 

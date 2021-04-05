@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <petclinic:layout pageName="owners">
     <h2>
@@ -14,17 +15,17 @@
         <div class="form-group has-feedback">
             <petclinic:inputField label="Nombre" name="firstName"/>
             <petclinic:inputField label="Apellido" name="lastName"/>
-            <petclinic:inputField label="Dirección" name="address"/>
+            <petclinic:inputField label="Direcciï¿½n" name="address"/>
             <petclinic:inputField label="Ciudad" name="city"/>
-            <petclinic:inputField label="Teléfono" name="telephone"/>
+            <petclinic:inputField label="Telï¿½fono" name="telephone"/>
             <petclinic:inputField label="Nombre de usuario" name="user.username"/>
-            <petclinic:inputField label="Contraseña" name="user.password"/>
+            <petclinic:inputField label="Contraseï¿½a" name="user.password"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${owner['new']}">
-                        <button class="btn btn-default" type="submit">Añadir Usuario</button>
+                        <button class="btn btn-default" type="submit">Aï¿½adir Usuario</button>
                     </c:when>
                     <c:otherwise>
                         <button class="btn btn-default" type="submit">Actualizar Usuario</button>
