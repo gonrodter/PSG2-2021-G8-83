@@ -13,7 +13,7 @@
         <tr>
             <th>Nombre</th>
             <th>Especialidades</th>
-            <th>Acciones</th>
+
         </tr>
         </thead>
         <tbody>
@@ -50,11 +50,13 @@
     <table class="table-buttons">
         <tr>
             <td>
+
                 <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como XML</a>
+
             </td>            
         </tr>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir Veterinario</a>
+    <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>AÃ±adir Veterinario</a>
     
 </petclinic:layout>
