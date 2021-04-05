@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
@@ -65,6 +66,7 @@ public interface OwnerRepository extends Repository<Owner, Integer>,CrudReposito
 	 * @param Owner the <code>Owner</code> to delete
 	 * @see BaseEntity#isNew
 	 */
-	void delete (Owner owner) throws DataAccessException;
+	
+	Optional<Owner> findOwnerByUserUsername(String username);
 
 }

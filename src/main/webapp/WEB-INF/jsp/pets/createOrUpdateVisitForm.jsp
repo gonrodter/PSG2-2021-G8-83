@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <petclinic:layout pageName="owners">
@@ -16,14 +17,14 @@
     <jsp:body>
         <h2><c:if test="${visit['new']}">New </c:if>Visit</h2>
 
-        <b>Mascota</b>
+        <b>Pet</b>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Fecha de nacimiento</th>
-                <th>Tipo</th>
-                <th>Propietario</th>
+                <th>Name</th>
+                <th>Birth Date</th>
+                <th>Type</th>
+                <th>Owner</th>
             </tr>
             </thead>
             <tr>
@@ -43,17 +44,21 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <input type="hidden" name="petId" value="${visit.pet.id}"/>
-                    <button class="btn btn-default" type="submit">Añadir Visita</button>
+
+                    <button class="btn btn-default" type="submit">AÃ±adir Visita</button>
+
                 </div>
             </div>
         </form:form>
 
         <br/>
-        <b>Visitas Anteriores</b>
+        <b>Previous Visits</b>
         <table class="table table-striped">
             <tr>
+
                 <th>Fecha</th>
-                <th>Descripción</th>
+                <th>DescripciÃ³n</th>
+
             </tr>
             <c:forEach var="visit" items="${visit.pet.visits}">
                 <c:if test="${!visit['new']}">

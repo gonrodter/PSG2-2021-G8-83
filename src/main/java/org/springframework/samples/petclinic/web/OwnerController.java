@@ -144,15 +144,14 @@ public class OwnerController {
 
 	// Añadido por AlvaroSC
 	
-	@GetMapping(value ="/owners/{ownerId}/deleteOwner")
-	public String deleteOwner(@PathVariable("ownerId") final int ownerId,final ModelMap model) {
-		 final Owner ow =this.ownerService.findOwnerById(ownerId);
-		 this.ownerService.deleteOwner(ow);
-		 model.addAttribute("message","Client deleted");
-		 	//La redireccion
-		 final Collection<Owner> results = this.ownerService.findAll();
-		 model.put("selections", results);
-		 return "/owners/ownersList";
-		 }
+	  @GetMapping("/owners/{id}/delete")
+	    public String deleteCliente(@PathVariable("id") final int owId,final ModelMap model) {
+	        final Owner ow =this.ownerService.findOwnerById(owId);
+	        this.ownerService.delete(ow);
+	        model.addAttribute("message","Cliente borrado");
+	        final Collection<Owner> results = this.ownerService.findAll();
+	        model.put("selections", results);
+	        return "/owners/ownersList";
+	    }
 	
 }
