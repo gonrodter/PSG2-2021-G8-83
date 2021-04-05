@@ -113,11 +113,19 @@
                             </td>
                             
                             
-                              <td class="text-left">
-                                <a href="/owners/${owner.id}/pets/${pet.id}/deletePet">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </a>
+                            
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/deletePet" var="deleteUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(deleteUrl)}">Borrar Mascota</a>
                             </td> 
+                            
+                            
+                            
+                            
+                     
                             
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/booking/new" var="bookingUrl">

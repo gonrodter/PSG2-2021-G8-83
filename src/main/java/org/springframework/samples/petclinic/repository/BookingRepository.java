@@ -30,6 +30,6 @@ public interface BookingRepository extends CrudRepository<Booking, String> {
 	 * @param Booking the <code>Booking</code> to delete
 	 * @see BaseEntity#isNew
 	 */
-	void delete (Booking booking) throws DataAccessException;
+	
 	
 }

@@ -45,14 +45,15 @@
                     </c:forEach>
                 </td>
                 
-<!--             <sec:authorize access="hasAuthority('admin')">	-->
-                 <td class="text-left">
-                	<a href="/owners/${owner.id}/deleteOwner">
-                		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                	</a>
-                </td>  
-<!--   			</sec:authorize>								-->
-      
+                	<sec:authorize access="hasAuthority('admin')">
+                    <td>
+                                <spring:url value="/owners/{ownerId}/delete" var="deleteUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>                          
+                                </spring:url>
+                                <a href="${fn:escapeXml(deleteUrl)}">Borrar Usuario</a>
+                    </td> 
+                	</sec:authorize>
+                  				
 <!--
                 <td> 
                     <c:out value="${owner.user.username}"/> 
