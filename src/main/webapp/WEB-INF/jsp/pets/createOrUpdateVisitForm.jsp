@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <petclinic:layout pageName="owners">
@@ -44,9 +43,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <input type="hidden" name="petId" value="${visit.pet.id}"/>
-
-                    <button class="btn btn-default" type="submit">Añadir Visita</button>
-
+                    <button class="btn btn-default" type="submit">Add Visit</button>
                 </div>
             </div>
         </form:form>
@@ -55,10 +52,8 @@
         <b>Visitas Anteriores</b>
         <table class="table table-striped">
             <tr>
-
-                <th>Fecha</th>
-                <th>Descripción</th>
-
+                <th>Date</th>
+                <th>Description</th>
             </tr>
             <c:forEach var="visit" items="${visit.pet.visits}">
                 <c:if test="${!visit['new']}">

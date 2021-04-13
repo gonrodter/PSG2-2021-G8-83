@@ -88,26 +88,6 @@ class VetServiceTests {
 		assertThat(vet.getSpecialties().get(0).getName()).isEqualTo("dentistry");
 		assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("surgery");
 	}
-	
-	@Test
-	@Transactional
-	void shouldInsertVet(){
-		
-		Vet vet = new Vet();
-		vet.setFirstName("Acme");
-		vet.setLastName("One");
-		vet.setId(1);
-		
-		vetService.save(vet);
-		assertThat(vetService.findById(1)).isNotEmpty();
-		
-	}
-	
-	@Test
-	@Transactional
-	void shouldFindVetById() {
-		assertThat(vetService.findById(1)).isNotEmpty();
-	}
 
 
 }
