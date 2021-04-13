@@ -28,7 +28,6 @@ import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -142,16 +141,4 @@ public class OwnerController {
 		return mav;
 	}
 
-	// Añadido por AlvaroSC
-	
-	  @GetMapping("/owners/{id}/delete")
-	    public String deleteCliente(@PathVariable("id") final int owId,final ModelMap model) {
-	        final Owner ow =this.ownerService.findOwnerById(owId);
-	        this.ownerService.delete(ow);
-	        model.addAttribute("message","Cliente borrado");
-	        final Collection<Owner> results = this.ownerService.findAll();
-	        model.put("selections", results);
-	        return "/owners/ownersList";
-	    }
-	
 }
