@@ -11,7 +11,7 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Name</th>
+            <th>Nombre</th>
             <td><b><c:out value="${owner.firstName} ${owner.lastName}"/></b></td>
         </tr>
         <tr>
@@ -19,11 +19,11 @@
             <td><c:out value="${owner.address}"/></td>
         </tr>
         <tr>
-            <th>City</th>
+            <th>Ciudad</th>
             <td><c:out value="${owner.city}"/></td>
         </tr>
         <tr>
-            <th>Telephone</th>
+            <th>Telefono</th>
             <td><c:out value="${owner.telephone}"/></td>
         </tr>
     </table>
@@ -31,7 +31,7 @@
     <spring:url value="{ownerId}/edit" var="editUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Owner</a>
+    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Editar Propietario</a>
 
     <spring:url value="{ownerId}/pets/new" var="addUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
@@ -49,11 +49,11 @@
             <tr>
                 <td valign="top">
                     <dl class="dl-horizontal">
-                        <dt>Name</dt>
+                        <dt>Nombre</dt>
                         <dd><c:out value="${pet.name}"/></dd>
-                        <dt>Birth Date</dt>
+                        <dt>Fecha de nacimiento</dt>
                         <dd><petclinic:localDate date="${pet.birthDate}" pattern="yyyy-MM-dd"/></dd>
-                        <dt>Type</dt>
+                        <dt>Especie</dt>
                         <dd><c:out value="${pet.type.name}"/></dd>
                     </dl>
                 </td>
@@ -77,7 +77,7 @@
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(petUrl)}">Edit Pet</a>
+                                <a href="${fn:escapeXml(petUrl)}">Editar Mascota</a>
                             </td>
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">

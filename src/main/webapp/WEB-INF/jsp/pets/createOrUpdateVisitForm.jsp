@@ -16,14 +16,14 @@
     <jsp:body>
         <h2><c:if test="${visit['new']}">New </c:if>Visit</h2>
 
-        <b>Pet</b>
+       <b>Mascota</b>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Birth Date</th>
-                <th>Type</th>
-                <th>Owner</th>
+                <th>Nombre</th>
+                <th>Fecha de nacimiento</th>
+                <th>Tipo</th>
+                <th>Propietario</th>
             </tr>
             </thead>
             <tr>
@@ -49,7 +49,7 @@
         </form:form>
 
         <br/>
-        <b>Previous Visits</b>
+        <b>Visitas Anteriores</b>
         <table class="table table-striped">
             <tr>
                 <th>Date</th>
