@@ -9,30 +9,26 @@
 
 <petclinic:layout pageName="owners">
     <h2>
-        <c:if test="${owner['new']}">New </c:if> Owner
+        <c:if test="${owner['new']}">Nuevo </c:if> Usuario
     </h2>
     <form:form modelAttribute="owner" class="form-horizontal" id="add-owner-form">
         <div class="form-group has-feedback">
-
             <petclinic:inputField label="Nombre" name="firstName"/>
             <petclinic:inputField label="Apellido" name="lastName"/>
-            <petclinic:inputField label="Dirección" name="address"/>
+            <petclinic:inputField label="Direcci�n" name="address"/>
             <petclinic:inputField label="Ciudad" name="city"/>
-            <petclinic:inputField label="Teléfono" name="telephone"/>
+            <petclinic:inputField label="Tel�fono" name="telephone"/>
             <petclinic:inputField label="Nombre de usuario" name="user.username"/>
-            <petclinic:inputField label="Contraseña" name="user.password"/>
-
+            <petclinic:inputField label="Contrase�a" name="user.password"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${owner['new']}">
-
-                        <button class="btn btn-default" type="submit">Añadir Usuario</button>
-
+                        <button class="btn btn-default" type="submit">A�adir Usuario</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Update Owner</button>
+                        <button class="btn btn-default" type="submit">Actualizar Usuario</button>
                     </c:otherwise>
                 </c:choose>
             </div>
