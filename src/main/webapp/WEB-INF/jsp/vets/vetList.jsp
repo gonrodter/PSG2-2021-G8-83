@@ -7,12 +7,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <petclinic:layout pageName="vets">
-    <h2>Veterinarians</h2>
+    <h2>Veterinarios</h2>
 
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
-
             <th>Nombre</th>
             <th>Especialidades</th>
             <th>Acciones</th>
@@ -53,9 +52,7 @@
         <tr>
             <td>
 
-
                 <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como XML</a>
-
 
             </td>            
         </tr>
