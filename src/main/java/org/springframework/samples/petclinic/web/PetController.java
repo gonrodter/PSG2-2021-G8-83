@@ -151,4 +151,16 @@ public class PetController {
 		}
 	}
 
+        
+// Añadido por AlvaroSC
+        
+     @GetMapping("/pets/{petId}/deletePet")
+     public String deletePet(@PathVariable("petId") final int petId,final ModelMap model) {
+          final Pet p =this.petService.findPetById(petId);
+          model.addAttribute("message","Pet deleted");
+          this.petService.deleteCascada(p);
+          return "redirect:/owners/{ownerId}";
+        }    
+
+    
 }
