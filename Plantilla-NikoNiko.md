@@ -32,10 +32,9 @@ In the retrospective meeting, the team has a discussion about those results.
 
 ## Sprint Template
 
-| Day           | JAPAREJO    | Juanito  | [Member C]     | [Member D]     | [Member E]     | [Member F]     |
-| ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | -------------  |
-| Day 1         | :smile:        |                |                |                |                |                |
-| Day 2         |               |    :smile:            |                |                |                |                |
-| Day 3         |               |    :worried:            |                |                |                |                |
-| Day 4         |  :neutral_face:             |               |                |                |                |                |
+| Day           | LAUSALBRA     | ALVSEVCAB      | DANRICOST      | GONRODTER      | LUCTORGOM     | 
+| ------------- | ------------- | -------------  | -------------  | -------------  | ------------- | 
+| Day 1         |               |                |                |                |               |
+| Day 2         |               |                |                |                |               |
+| Day 3         |               |                |                |                |               |              
 ...
