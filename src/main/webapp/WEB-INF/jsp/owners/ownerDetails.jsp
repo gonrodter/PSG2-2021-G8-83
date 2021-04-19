@@ -91,7 +91,7 @@
                             </tr>
                         </c:forEach>
                         <tr>
-                        <td>
+                        	<td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
@@ -124,9 +124,17 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(deleteUrl)}">Borrar Mascota</a>
                             </td> 
-                            
-                          
-                        </tr>
+                       </tr>
+                       
+                       <tr>
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/adoption" var="adoptionUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(adoptionUrl)}">Dar en adopción</a>
+                            </td>
+                       </tr>
                     </table>
                 </td>
             </tr>
