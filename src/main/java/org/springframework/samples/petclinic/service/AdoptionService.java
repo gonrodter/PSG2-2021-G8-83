@@ -24,6 +24,10 @@ private AdoptionRepository adoptionRepository;
 		adoptionRepository.save(adoption);      
     }
 	
+	@Transactional
+    public Adoption findAdoptionById(int id) throws DataAccessException {
+		return adoptionRepository.findAdoptionById(id);
+    }
 	
 	@Transactional
 	public Adoption findAdoptionByStatus(int petId) {

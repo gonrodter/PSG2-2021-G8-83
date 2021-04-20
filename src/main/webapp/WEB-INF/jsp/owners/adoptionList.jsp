@@ -13,8 +13,10 @@
         <thead>
         <tr>
             <th>Mascota</th>
+            <th>Especie</th>
             <th>Dueño</th>
             <th>Descripción</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -23,12 +25,25 @@
                 <td>
                     <c:out value="${adoption.pet}"/>
                 </td>
+                
+                <td>
+                    <c:out value="${adoption.pet.type.name}"/>
+                </td>
              
              	<td>
              		<c:out value="${adoption.owner.firstName} ${adoption.owner.lastName}"/>
              	</td>
              	<td>
              		<c:out value="${adoption.text}"/>
+             	</td>
+             	
+             	<td>
+             	<sec:authorize access="hasAnyAuthority('owner')"  >
+             		<spring:url value="adoption/{adoptionId}/application" var="apply">
+				    	<spring:param name="adoptionId" value="${adoption.id}"/>
+				    </spring:url>
+				    <a href="${fn:escapeXml(apply)}">Solicitar adopción</a>
+				 </sec:authorize>
              	</td>
              	
             </tr>

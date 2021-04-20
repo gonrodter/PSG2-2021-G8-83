@@ -6,11 +6,17 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Adoption;
 import org.springframework.samples.petclinic.model.Adoptions;
+import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.service.AdoptionService;
+import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -24,16 +30,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AdoptionController {
 	
 	private static final String VIEWS_PETS_ADOPTION_FORM = "owners/AdoptionPetForm";
+	private static final String VIEWS_ADOPTION_APPLICATION_FORM = "owners/applicationForAdoptionForm";
+	
 
 	private final AdoptionService adoptionService;
 	private final OwnerService ownerService;
 	private final PetService petService;
+	private final ApplicationService applicationService;
+	private final UserService userService;
        
 	@Autowired
-	public AdoptionController(AdoptionService adoptionService, OwnerService ownerService, PetService petService) {
+	public AdoptionController(AdoptionService adoptionService, OwnerService ownerService, PetService petService,
+			ApplicationService applicationService,UserService userService) {
 		this.adoptionService = adoptionService;
 		this.ownerService=ownerService;
 		this.petService=petService;
+		this.applicationService=applicationService;
+		this.userService = userService;
 	}
 	
 	@InitBinder
@@ -84,5 +97,46 @@ public class AdoptionController {
 			model.put("adoptions", adoptions);
 			return "owners/adoptionList";
 	    }
+    
+    @GetMapping(value = "adoption/{adoptionId}/application")
+    public String initApplicationForm(@PathVariable("adoptionId") int adoptionId, ModelMap model) {
+ 		Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
+ 		model.put("adoption", adoption);
+ 		Application application = new Application();
+ 		model.put("application", application);
+ 		return VIEWS_ADOPTION_APPLICATION_FORM;
+    }
+     
+     
+    @PostMapping(value = "adoption/{adoptionId}/application")
+ 	public String processApplicationForm(@Valid Application application, BindingResult result, @PathVariable("adoptionId") int adoptionId, ModelMap model) {
+ 		if (result.hasErrors()) {
+ 			Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
+ 			model.put("adoption", adoption);
+ 	 		model.put("application", application);
+ 			return  VIEWS_ADOPTION_APPLICATION_FORM;
+ 		}
+ 		else {
+ 			Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
+ 			application.setAdoption(adoption);
+ 			Owner applicant=getOwnerActivo();
+ 			application.setApplicant(applicant);
+ 			this.applicationService.saveApplication(application);
+ 			return "redirect:/allAdoptions";
+		}
+ 	}
+    
+    private Owner getOwnerActivo() {
+		UserDetails userDetails = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+          userDetails = (UserDetails) principal;
+        }
+        String userName = userDetails.getUsername();
+        User usuario = this.userService.findUser(userName).get();
+        Owner Owner= this.ownerService.findByUser(usuario);
+        return  Owner;
+	}
 
+    
 }

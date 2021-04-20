@@ -12,6 +12,5 @@
             <spring:url value="/resources/images/boxer.png" htmlEscape="true" var="petsImage"/>
             <img class="img-responsive" src="${petsImage}"/>
         </div>
-        <div><a href="/allAdoptions">Adopciones</a></div>
     </div>
 </petclinic:layout>
