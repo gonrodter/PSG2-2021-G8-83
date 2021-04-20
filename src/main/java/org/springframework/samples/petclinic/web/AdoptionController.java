@@ -1,22 +1,16 @@
 package org.springframework.samples.petclinic.web;
 
-import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Optional;
+
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Adoption;
-import org.springframework.samples.petclinic.model.Booking;
+import org.springframework.samples.petclinic.model.Adoptions;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.service.AdoptionService;
-import org.springframework.samples.petclinic.service.BookingService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -80,12 +74,15 @@ public class AdoptionController {
 				return "owners/exceptionAdoption";
 			}
  		}
+ 		
  	}
-
     
-	
-	
-
-	
+    @GetMapping(value = "/allAdoptions")
+	    public String showAdoptionList(ModelMap model) {
+	    	Adoptions adoptions = new Adoptions();
+	    	adoptions.getAdoptionsList().addAll(this.adoptionService.findActiveByStatus());
+			model.put("adoptions", adoptions);
+			return "owners/adoptionList";
+	    }
 
 }

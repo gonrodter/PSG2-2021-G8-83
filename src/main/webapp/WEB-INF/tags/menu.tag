@@ -40,6 +40,12 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Veterinarios</span>
 				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'adoptions'}" url="/allAdoptions"
+					title="Adopciones">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span>Adopciones</span>
+				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="Error">

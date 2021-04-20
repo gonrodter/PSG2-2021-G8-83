@@ -1,16 +1,13 @@
 package org.springframework.samples.petclinic.service;
 
-import java.time.LocalDate;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Adoption;
-import org.springframework.samples.petclinic.model.Booking;
-import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.repository.AdoptionRepository;
-import org.springframework.samples.petclinic.repository.BookingRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class AdoptionService {
@@ -27,9 +24,16 @@ private AdoptionRepository adoptionRepository;
 		adoptionRepository.save(adoption);      
     }
 	
+	
 	@Transactional
 	public Adoption findAdoptionByStatus(int petId) {
 		return adoptionRepository.findAdoptionByStatus(petId);
 	}
+	
+	@Transactional(readOnly = true)
+    public List<Adoption> findActiveByStatus() throws DataAccessException {
+		return adoptionRepository.findActiveByStatus();
+    }
+	
 	
 }
