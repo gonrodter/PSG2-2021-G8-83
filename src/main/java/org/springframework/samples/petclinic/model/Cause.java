@@ -15,26 +15,26 @@ import javax.validation.constraints.NotNull;
 public class Cause extends BaseEntity {
 
 
-	@NotBlank
+	@NotNull
 	private String name;
 	
 	
-	@NotBlank
+	@NotNull
 	private String description;
 	
 	
-	@NotBlank
+	@NotNull
 	@Min(0)
 	private Double budgetTarget;
 	
 	
-	@NotBlank
+	@NotNull
 	private String organization;
-	
+	/**
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
-	
+	**/
 	@NotNull
 	private Boolean isClosed;
 	
@@ -49,6 +49,7 @@ public class Cause extends BaseEntity {
 		this.isClosed = isClosed;
 	}
 	
+	/**
 	public Owner getOwner() {
 		return owner;
 	}
@@ -56,7 +57,7 @@ public class Cause extends BaseEntity {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-			
+		**/	
 	public String getName() {
 		return name;
 	}

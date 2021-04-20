@@ -7,15 +7,15 @@
 
 <petclinic:layout pageName="causes">
 	<h2>
-		<fmt:message key="causes" />
+		<th> Causas </th>
 	</h2>
 	
 	<table id="causesTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th><fmt:message key="name" /></th>
-				<th><fmt:message key="budgetAchieved"/></th>
-				<th><fmt:message key="budgetTarget"/></th>
+				<th> Nombre </th>
+				<th>Cantidad obtenida</th>
+				<th>Cantidad solicitada</th>
 				<c:if test="${!cause.isClosed}">
 					<th></th>
 					<th></th>
@@ -37,13 +37,13 @@
 						<td><spring:url value="causes/{causeId}/donations/new" var="createUrl">
        							<spring:param name="causeId" value="${entry.key.id}"/>
     						</spring:url>
-   							<a href="${fn:escapeXml(createUrl)}" class="btn btn-default"><fmt:message key="createDonation"/></a>
+   							<a href="${fn:escapeXml(createUrl)}" class="btn btn-default">Crear donación</a>
 						</td>
 					</c:if>
 					<td><spring:url value="/causes/{causeId}" var="detailsUrl">
        						<spring:param name="causeId" value="${entry.key.id}"/>
     					</spring:url>
-   						<a href="${fn:escapeXml(detailsUrl)}" class="btn btn-default"><fmt:message key="causeDetails"/></a>
+   						<a href="${fn:escapeXml(detailsUrl)}" class="btn btn-default">Detalles de donación</a>
 					</td>
 				</tr>
 				
@@ -54,8 +54,7 @@
 	<table class="table-buttons">
 		<tr>
 			<td><a class="btn btn-default" style="margin-right: 10px"
-				href='<spring:url value="/causes/new" htmlEscape="true"/>'><fmt:message
-						key="addCause" /></a></td>
+				href='<spring:url value="/causes/new" htmlEscape="true"/>'>Crear Causa</a></td>
 		</tr>
 	</table>
 </petclinic:layout>

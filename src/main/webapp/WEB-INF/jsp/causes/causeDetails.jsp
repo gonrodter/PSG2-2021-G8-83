@@ -8,34 +8,34 @@
 <petclinic:layout pageName="cause">
 
     <h2>
-        <fmt:message key="causesInfo" />
+        <th>Informacion de la causa</th>
     </h2>
 
     <table id="causesDetails" class="table table-striped">
         <tr>
-            <th><fmt:message key="name" /></th>
+            <th>Nombre</th>
             <td><b><c:out value="${cause.name}" /></b></td>
         </tr>
         <tr>
-            <th><fmt:message key="description" /></th>
+            <th>Descripcion</th>
             <td><c:out value="${cause.description}" /></td>
         </tr>
         <tr>
-            <th><fmt:message key="budgetTarget" /></th>
+            <th>Cantidad obtenida</th>
             <td><c:out value="${cause.budgetTarget}" /></td>
         </tr>
         <tr>
-            <th><fmt:message key="organization" /></th>
+            <th>Organizacion</th>
             <td><c:out value="${cause.organization}" /></td>
         </tr>
         <tr>
-            <th><fmt:message key="isClosed" /></th>
+            <th>Estado</th>
             <td>
                 <c:if test="${cause.isClosed }">
-                    <fmt:message key="True" />
+                    <c:out value="Cerrada"></c:out>
                 </c:if>
                 <c:if test="${!cause.isClosed }">
-                    <fmt:message key="False" />
+                 	<c:out value="Abierta"></c:out>
                 </c:if>
             </td>
         </tr>
@@ -43,15 +43,15 @@
 
     <br />
     <h2>
-        <fmt:message key="donations" />
+        <th>Donaciones</th>
     </h2>
 
     <table id="donationsTable" class="table table-striped">
         <thead>
             <tr>
-                <th><fmt:message key="name" /></th>
-                <th><fmt:message key="date" /></th>
-                <th><fmt:message key="amount" /></th>
+                <th>Nombre donante</th>
+                <th>Fecha donacion</th>
+                <th>Cantidad donada</th>
             </tr>
         </thead>
         <tbody>
