@@ -5,7 +5,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<petclinic:layout pageName="owners">
+<petclinic:layout pageName="ownersDetails">
 
     <h2>Información de propietario</h2>
 
@@ -123,10 +123,16 @@
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
                                 <a href="${fn:escapeXml(deleteUrl)}">Borrar Mascota</a>
-                            </td> 
+                            </td>
                        </tr>
-                       
                     </table>
+                </td>
+                <td>
+                    <spring:url value="/owners/{ownerId}/pets/{petId}/adoption" var="adoptionUrl">
+                    <spring:param name="ownerId" value="${owner.id}"/>
+                    <spring:param name="petId" value="${pet.id}"/>
+                    </spring:url>
+                    <a href="${fn:escapeXml(adoptionUrl)}" style = "margin-top: 20%;" class="btn btn-default">Dar en adopción</a>
                 </td>
             </tr>
 
