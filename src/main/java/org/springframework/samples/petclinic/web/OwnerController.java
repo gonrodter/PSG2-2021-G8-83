@@ -165,4 +165,16 @@ public class OwnerController {
 		return "owners/ownerProfile";
 	}
 	
+	@GetMapping("/owners/profile1")
+	public String OwnerProfile1(@AuthenticationPrincipal User user, ModelMap model) {
+		model.addAttribute("message", "Ya está creada la propuesta de adopción para esta mascota");
+		return OwnerProfile(user, model);
+	}
+	
+	@GetMapping("/owners/profile2")
+	public String OwnerProfile2(@AuthenticationPrincipal User user, ModelMap model) {
+		model.addAttribute("message", "Primero ponga en adopción su mascota");
+		return OwnerProfile(user, model);
+	}
+	
 }

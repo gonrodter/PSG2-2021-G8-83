@@ -2,6 +2,8 @@ package org.springframework.samples.petclinic.web;
 
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Adoption;
@@ -57,11 +59,19 @@ public class AdoptionController {
 
 	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/adoption")
     public String initAdoptionForm(@PathVariable("petId") int petId, ModelMap model) {
- 		Pet pet = this.petService.findPetById(petId);
- 		model.put("pet", pet);
- 		Adoption adoption = new Adoption();
- 		model.put("adoption", adoption);
- 		return VIEWS_PETS_ADOPTION_FORM;
+		
+		try {
+			Adoption a = this.adoptionService.findAdoptionByStatus(petId);
+			int id = a.getId();
+			return "redirect:/owners/profile1";
+		}catch(Exception e){
+		
+	 		Pet pet = this.petService.findPetById(petId);
+	 		model.put("pet", pet);
+	 		Adoption adoption = new Adoption();
+	 		model.put("adoption", adoption);
+	 		return VIEWS_PETS_ADOPTION_FORM;
+		}
     }
      
      
@@ -82,7 +92,7 @@ public class AdoptionController {
 	            adoption.setPet(pet);
 	            adoption.setOwner(owner);
 	            this.adoptionService.saveAdoption(adoption);
-	            return "redirect:/owners/{ownerId}";
+	            return "redirect:/owners/profile";
  			}else {
 				return "owners/exceptionAdoption";
 			}
@@ -95,6 +105,7 @@ public class AdoptionController {
 	    	Adoptions adoptions = new Adoptions();
 	    	adoptions.getAdoptionsList().addAll(this.adoptionService.findActiveByStatus());
 			model.put("adoptions", adoptions);
+			model.put("ownerActivo", getOwnerActivo());
 			return "owners/adoptionList";
 	    }
     
@@ -137,6 +148,5 @@ public class AdoptionController {
         Owner Owner= this.ownerService.findByUser(usuario);
         return  Owner;
 	}
-
     
 }

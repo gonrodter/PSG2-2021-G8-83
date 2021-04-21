@@ -1,5 +1,8 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Application;
@@ -22,4 +25,14 @@ public class ApplicationService {
 		applicationRepository.save(application);      
     }
 
+	@Transactional
+	public List<Application> findApplicationByStatus(int petId){
+		return this.applicationRepository.findApplicationByStatus(petId);
+	}
+	
+	@Transactional
+	public Optional<Application> findById(int id){
+		return this.applicationRepository.findById(id);
+	}
+	
 }

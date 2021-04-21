@@ -9,6 +9,15 @@
     pageEncoding="ISO-8859-1"%>
 <petclinic:layout pageName="adoptions">
     <h2>Adopciones</h2>
+    
+    <c:choose>
+    
+    	<c:when test="${fn:length(adoptions.adoptionsList)==0}">
+    		<h4>No hay propuestas de adopción disponibles</h4>
+    	</c:when>
+    	
+    	<c:otherwise>
+    
     <table id="adoptionsTable" class="table table-striped">
         <thead>
         <tr>
@@ -38,12 +47,14 @@
              	</td>
              	
              	<td>
+             	<c:if test="${ownerActivo.user.username!=adoption.owner.user.username }">
              	<sec:authorize access="hasAnyAuthority('owner')"  >
              		<spring:url value="adoption/{adoptionId}/application" var="apply">
 				    	<spring:param name="adoptionId" value="${adoption.id}"/>
 				    </spring:url>
 				    <a href="${fn:escapeXml(apply)}">Solicitar adopción</a>
 				 </sec:authorize>
+				 </c:if>
              	</td>
              	
             </tr>
@@ -51,4 +62,9 @@
         
         </tbody>
     </table>
+    
+    </c:otherwise>
+    
+    </c:choose>
+    
 </petclinic:layout>
