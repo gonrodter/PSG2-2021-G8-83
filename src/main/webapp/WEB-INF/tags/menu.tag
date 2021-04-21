@@ -34,6 +34,14 @@
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<span>Busqueda de propietarios</span>
 				</petclinic:menuItem>
+				
+				<sec:authorize access="hasAuthority('owner')">
+				<petclinic:menuItem active="${name eq 'ownersDetails'}" url="/owners/profile"
+					title="Mi Perfil">
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					<span>Mi Perfil</span>
+				</petclinic:menuItem>
+				</sec:authorize>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
 					title="Veterinarios">
