@@ -31,6 +31,10 @@ public class Donation extends BaseEntity{
     @Column(name="client")
     private String client;
     
+    @ManyToOne
+    @JoinColumn(name = "cause_id")
+    private Cause cause;
+    
 	public Double getAmount() {
 		return amount;
 	}
@@ -54,10 +58,6 @@ public class Donation extends BaseEntity{
 	public void setClient(String client) {
 		this.client = client;
 	}
-	
-    @ManyToOne
-    @JoinColumn(name = "cause_id")
-    private Cause cause;
     
     public Cause getCause() {
         return this.cause;

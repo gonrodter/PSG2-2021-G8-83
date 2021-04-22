@@ -108,7 +108,7 @@ public class Cause extends BaseEntity {
 	// DESCOMENTAR CUANDO DONATION HECHO 
 	
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cause")
+	/*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cause")
 	private Set<Donation> donations;
 	
 
@@ -134,7 +134,7 @@ public class Cause extends BaseEntity {
 	public void addDonation (final Donation donation) {
 		this.getDonationsInternal().add(donation);
 		donation.setCause(this);
-	}
+	}*/
 	
 	
 	

@@ -48,28 +48,27 @@ public class DonationController {
     }
 
     @GetMapping(value = "/donations/new")
-    public String initCreationForm(Cause cause, ModelMap model) {
+    public String initCreationForm(@PathVariable("causeId") int causeId, ModelMap model) {
         Donation donation = new Donation();
-        cause.addDonation(donation);
-    	donation.setDate(LocalDate.now());
         model.put("donation", donation);
         return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
     }
 
     @PostMapping(value = "/donations/new")
-    public String processCreationForm(@ModelAttribute Cause cause, @Valid Donation donation, BindingResult result, ModelMap model) {
-    	donation.setCause(cause);
-    	if (cause.getIsClosed()){
+    public String processCreationForm(@PathVariable("causeId") int causeId, Donation donation, BindingResult result, ModelMap model) {
+    	Cause cause=causeService.findCauseById(causeId);
+    	/*if (cause.getIsClosed()){
             result.rejectValue("client", "closed");
             result.rejectValue("amount", "closed");
-    	} 
+    	} */
         if (result.hasErrors()) {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
-        } else {
+        } else { 
+        	donation.setCause(cause);;
+        	donation.setDate(LocalDate.now());
             this.donationService.saveDonation(donation);
-            cause.addDonation(donation);
-            if(cause.getBudgetTarget() <= causeService.totalBudget(donation.getCause().getId())){
+            if(cause.getBudgetTarget() <= causeService.totalBudget(causeId)){
             	cause.setIsClosed(true);
             this.causeService.saveCause(cause);
             }

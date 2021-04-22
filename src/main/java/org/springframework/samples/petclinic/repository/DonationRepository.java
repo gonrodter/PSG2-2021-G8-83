@@ -4,12 +4,11 @@ package org.springframework.samples.petclinic.repository;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Donation;
 
-public interface DonationRepository {
-	
-	void save(Donation donation);
+public interface DonationRepository extends CrudRepository<Donation,String> {
     
 	@Query("SELECT d FROM Donation d where d.id=:donationId")
 	Donation findByDonationId(@Param(value = "donationId") int donationId);

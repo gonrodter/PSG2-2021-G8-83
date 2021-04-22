@@ -51,15 +51,15 @@ public class CauseController {
         }
 
         @GetMapping(value = { "/causes"} )
-        public String showCauseList(Map<String, Object> model) {
-            List<Cause> causes = new ArrayList<>();
+        public String showCauseList(final Map<String, Object> model) {
+            final List<Cause> causes = new ArrayList<>();
             causes.addAll(this.causeService.findCauses());
          
-            List<Double> donations=new ArrayList<>(this.donationService.findDonationsByCauses(causes));
+           // final List<Double> donations = new ArrayList<>(this.donationService.findDonationsByCauses(causes));
             
-            Map<Cause,Double> res=new HashMap<>();
+            final Map<Cause,Double> res=new HashMap<>();
             for(int i=0;i<causes.size();i++) {
-            	res.put(causes.get(i), donations.get(i));
+            	res.put(causes.get(i), 0.0);
             }
             model.put("map", res);
             return "causes/causeList";
