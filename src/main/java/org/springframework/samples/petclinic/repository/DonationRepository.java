@@ -15,6 +15,6 @@ public interface DonationRepository extends CrudRepository<Donation,String> {
 	
 	@Query("SELECT d FROM Donation d where d.cause.id=:causeId")
 	Collection<Donation> findByCauseId(@Param(value = "causeId") int causeId);
-
+	
 
 }

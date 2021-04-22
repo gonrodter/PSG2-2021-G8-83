@@ -2,6 +2,8 @@ package org.springframework.samples.petclinic.web;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -57,15 +59,27 @@ public class DonationController {
     @PostMapping(value = "/donations/new")
     public String processCreationForm(@PathVariable("causeId") int causeId, Donation donation, BindingResult result, ModelMap model) {
     	Cause cause=causeService.findCauseById(causeId);
-    	/*if (cause.getIsClosed()){
-            result.rejectValue("client", "closed");
-            result.rejectValue("amount", "closed");
-    	} */
+    	List<Cause> causes = new ArrayList<>();
+        causes.addAll(this.causeService.findCauses());
+        //int i = causes.indexOf(cause);
+        int n = 0;
+        for (int i = 0; i<causes.size(); i++) {
+        	if(causes.get(i).getId()==causeId) {
+        		n = i;
+        	}
+        	
+        }
+        List<Double> donations = new ArrayList<>(this.donationService.findDonationsByCauses(causes));
         if (result.hasErrors()) {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
-        } else { 
-        	donation.setCause(cause);;
+        }else if( cause.getBudgetTarget()-donations.get(n)-donation.getAmount()<0) {
+        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad esperada para la donación");
+        	model.put("donation", donation);
+            return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
+        }else { 
+        
+        	donation.setCause(cause);
         	donation.setDate(LocalDate.now());
             this.donationService.saveDonation(donation);
             if(cause.getBudgetTarget() <= causeService.totalBudget(causeId)){
