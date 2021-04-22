@@ -49,7 +49,7 @@
              	<td>
              	<c:if test="${ownerActivo.user.username!=adoption.owner.user.username }">
              	<sec:authorize access="hasAnyAuthority('owner')"  >
-             		<spring:url value="adoption/{adoptionId}/application" var="apply">
+             		<spring:url value="/adoption/{adoptionId}/application" var="apply">
 				    	<spring:param name="adoptionId" value="${adoption.id}"/>
 				    </spring:url>
 				    <a href="${fn:escapeXml(apply)}">Solicitar adopción</a>

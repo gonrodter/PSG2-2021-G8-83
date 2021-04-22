@@ -35,4 +35,9 @@ public class ApplicationService {
 		return this.applicationRepository.findById(id);
 	}
 	
+	@Transactional
+	public List<Application> findByAdoptionId(int adoptionId){
+		return this.applicationRepository.findByAdoptionId(adoptionId);
+	}
+	
 }

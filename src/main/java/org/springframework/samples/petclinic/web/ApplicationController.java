@@ -71,7 +71,7 @@ public class ApplicationController {
     	adoption.setStatus(true);
     	this.adoptionService.saveAdoption(adoption);
     	
-    	return "redirect:/allAdoptions";
+    	return "redirect:/owners/profile";
     	
     }
 	

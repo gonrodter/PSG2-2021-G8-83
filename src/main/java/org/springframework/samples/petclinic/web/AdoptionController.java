@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.web;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +112,15 @@ public class AdoptionController {
     
     @GetMapping(value = "adoption/{adoptionId}/application")
     public String initApplicationForm(@PathVariable("adoptionId") int adoptionId, ModelMap model) {
+    	
+    	List<Application> appsDelAdoption = applicationService.findByAdoptionId(adoptionId);
+    	for(Application a : appsDelAdoption) {
+    		if(a.getApplicant().getUser().getUsername().equals(getOwnerActivo().getUser().getUsername())) {
+    			model.addAttribute("message", "Ya se ha enviado una solicitud");
+    			return showAdoptionList(model);
+    		}    		
+    	}
+    	
  		Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
  		model.put("adoption", adoption);
  		Application application = new Application();
