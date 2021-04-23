@@ -68,35 +68,6 @@ public class Owner extends Person {
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	
-	/**
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-	private Set<Cause> causes;
-	
-	
-	
-	protected Set<Cause> getCausesInternal() {
-		if (this.causes == null) {
-			this.causes = new HashSet<>();
-		}
-		return this.causes;
-	}
-	
-	protected void setCausesInternal(Set<Cause> causes) {
-		this.causes = causes;
-	}
-	
-	public List<Cause> getCauses() {
-		List<Cause> sortedCauses = new ArrayList<>(getCausesInternal());
-		PropertyComparator.sort(sortedCauses, new MutableSortDefinition("name", true, true));
-		return Collections.unmodifiableList(sortedCauses);
-	}
-	
-	public void addCause(Cause cause) {
-		getCausesInternal().add(cause);
-		cause.setOwner(this);
-	}
-
-	**/
 	public String getAddress() {
 		return this.address;
 	}
