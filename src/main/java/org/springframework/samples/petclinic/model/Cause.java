@@ -102,42 +102,5 @@ public class Cause extends BaseEntity {
 	public void setOrganization(final String organization) {
 		this.organization = organization;
 	}
-
-	
-	
-	// DESCOMENTAR CUANDO DONATION HECHO 
-	
-	
-	/*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cause")
-	private Set<Donation> donations;
-	
-
-	protected Set<Donation> getDonationsInternal (){
-		if(this.donations == null) {
-			this.donations = new HashSet<>();
-		}
-		return this.donations;
-	}
-	
-	//protected void setDonationsInternal (final Set<Donation> donations) {
-		//this.donations = donations;
-	//}
-	
-	
-	public List<Donation> getDonations (){
-		List<Donation> sortedDonations = new ArrayList<>(this.getDonationsInternal());
-		PropertyComparator.sort(sortedDonations, new MutableSortDefinition("dateDonation",false,false));
-		return Collections.unmodifiableList(sortedDonations);
-	}
-	
-	
-	public void addDonation (final Donation donation) {
-		this.getDonationsInternal().add(donation);
-		donation.setCause(this);
-	}*/
-	
-	
-	
-	
 	
 }
