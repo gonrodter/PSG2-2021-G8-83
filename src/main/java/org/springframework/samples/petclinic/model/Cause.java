@@ -2,8 +2,6 @@ package org.springframework.samples.petclinic.model;
 
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -16,25 +14,24 @@ public class Cause extends BaseEntity {
 
 
 	@NotNull
+	@NotBlank (message = "El nombre no puede estar vacio")
 	private String name;
 	
 	
 	@NotNull
+	@NotBlank (message = "La descripción no puede estar vacia")
 	private String description;
 	
 	
-	@NotNull
-	@Min(0)
+	@NotNull (message = "Escribe un numero porfavor")
+	@Min(value = 5 , message = "La cantidad solicitada deberia de ser mayor que 5 euros")
 	private Double budgetTarget;
 	
 	
 	@NotNull
+	@NotBlank (message = "La organizacion que reciba el dinero no puede estar vacia")
 	private String organization;
-	/**
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	private Owner owner;
-	**/
+	
 	@NotNull
 	private Boolean isClosed;
 	
@@ -49,15 +46,7 @@ public class Cause extends BaseEntity {
 		this.isClosed = isClosed;
 	}
 	
-	/**
-	public Owner getOwner() {
-		return owner;
-	}
-	
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-		**/	
+
 	public String getName() {
 		return name;
 	}
@@ -89,40 +78,6 @@ public class Cause extends BaseEntity {
 	public void setOrganization(final String organization) {
 		this.organization = organization;
 	}
-	
-	// DESCOMENTAR CUANDO DONATION HECHO 
-	
-	/**
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.All, mappedBy = "cause")
-	private Set<Donation> donations;
-	
 
-	protected Set<Donation> getDonationsInternal (){
-		if(this.donations == null) {
-			this.donations = new HashSet<>();
-		}
-		return this.donations;
-	}
-	
-	protected void setDonationsInternal (final Set<Donation> donations) {
-		this.donations = donations;
-	}
-	
-	
-	public List<Donation> getDonations (){
-		List<Donation> sortedDonations = new ArrayList<>(this.getDonationsInternal());
-		PropertyComparator.sort(sortedDonations, new MutableSortDefinition("dateDonation",false,false));
-		return Collections.unmodifiableList(sortedDonations);
-	}
-	
-	
-	public void addDonation (final Donation donation) {
-		this.getDonationsInternal().add(donation);
-		donation.setCause(this);
-	}
-	**/
-	
-	
-	
-	
+		
 }
