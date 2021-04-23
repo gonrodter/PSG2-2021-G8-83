@@ -58,26 +58,37 @@ public class DonationController {
 
     @PostMapping(value = "/donations/new")
     public String processCreationForm(@PathVariable("causeId") int causeId, Donation donation, BindingResult result, ModelMap model) {
+    	Double amount = donation.getAmount();
     	Cause cause=causeService.findCauseById(causeId);
     	List<Cause> causes = new ArrayList<>();
         causes.addAll(this.causeService.findCauses());
-        //int i = causes.indexOf(cause);
         int n = 0;
         for (int i = 0; i<causes.size(); i++) {
         	if(causes.get(i).getId()==causeId) {
         		n = i;
         	}
-        	
         }
         List<Double> donations = new ArrayList<>(this.donationService.findDonationsByCauses(causes));
         if (result.hasErrors()) {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
-        }else if( cause.getBudgetTarget()-donations.get(n)-donation.getAmount()<0) {
-        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad esperada para la donación");
+        }else if (amount==null ) {
+        	model.addAttribute("message","La cantidad no puede estar vacia.");
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
-        }else { 
+        }else if(cause.getBudgetTarget()-donations.get(n)-donation.getAmount()<0) {
+        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad esperada para la donación.");
+        	model.put("donation", donation);
+            return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
+        }else if (donation.getAmount()<=0) {
+        	model.addAttribute("message","La cantidad tiene que ser mayor que 0.");
+        	model.put("donation", donation);
+            return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
+        }else if(donation.getClient()== "" ){
+            	model.addAttribute("message","No puede estar vacio");
+            	model.put("donation", donation);
+                return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;	
+         }else { 
         
         	donation.setCause(cause);
         	donation.setDate(LocalDate.now());
@@ -86,10 +97,10 @@ public class DonationController {
             	cause.setIsClosed(true);
             this.causeService.saveCause(cause);
             }
-          
+        }
         return "redirect:/causes";
     }  
 }
 
-    }
+    
 

@@ -22,7 +22,7 @@
                     </div>
              </div>
              <petclinic:inputField label= "Cantidad" name="Amount"/>
-            <petclinic:inputField label= "Cliente" name="client"/>
+            <petclinic:inputField label= "Cliente" name="client" />
 
       		
         </div>

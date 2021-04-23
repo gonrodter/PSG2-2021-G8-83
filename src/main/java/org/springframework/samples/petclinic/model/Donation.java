@@ -18,8 +18,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Donation extends BaseEntity{
 	
 	@NotNull
+	
 	@Column(name = "amount")
-	@Min(0)
+	//@Min(0)
 	private Double amount;
 	
     @NotNull
@@ -27,14 +28,14 @@ public class Donation extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate date;
 	
-    @NotBlank
+    @NotNull
     @Column(name="client")
     private String client;
     
     @ManyToOne
     @JoinColumn(name = "cause_id")
     private Cause cause;
-    
+        
 	public Double getAmount() {
 		return amount;
 	}
