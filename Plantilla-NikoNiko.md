@@ -34,9 +34,9 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           | LAUSALBRA     | ALVSEVCAB      | DANRICOST      | GONRODTER      | LUCTORGOM     | 
 | ------------- | ------------- | -------------  | -------------  | -------------  | ------------- | 
-| Day 1         | :neutral_face:|                | :fearful:      | :neutral_face: |               |
-| Day 2         | :neutral_face:|                | :worried:      | :fearful:      |               |
-| Day 3         | :fearful:     |                | :worried:      | :neutral_face: |               |          
-| Day 4         | :smiley:      |                | :smiley:       | :smiley:       |               |
-| Day 5         | :smiley:      |                | :smiley:       | :smiley:       |               |  
+| Day 1         | :neutral_face:| :neutral_face: | :fearful:      | :neutral_face: |               |
+| Day 2         | :neutral_face:| :worried:      | :worried:      | :fearful:      |               |
+| Day 3         | :fearful:     | :smiley:       | :worried:      | :neutral_face: |               |          
+| Day 4         | :smiley:      | :smiley:       | :smiley:       | :smiley:       |               |
+| Day 5         | :smiley:      | :worried:      | :smiley:       | :smiley:       |               |  
 ...
