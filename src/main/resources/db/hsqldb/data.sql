@@ -92,6 +92,3 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO booking(id,check_in,check_out,owner_id, pet_id) VALUES (1, '2013-01-01', '2013-01-01',1,1);
 
-INSERT INTO causes(id,budget_target,description,is_closed,name,organization) VALUES (1, '2340', 'Para ayudar a nuestras mascotas' , false, 'Por los animalicos', 'Animales S.L.');
-
-INSERT INTO donations(id,amount,client,date_of_donation,cause_id) VALUES (1,'53.52','Antonio','2019-03-22', 1);
