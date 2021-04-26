@@ -93,4 +93,5 @@ public class Cause extends BaseEntity {
 	public void setOrganization(final String organization) {
 		this.organization = organization;
 	}
+    
 }
