@@ -29,25 +29,24 @@ public class Cause extends BaseEntity {
 
 
 	@NotNull
+	@NotBlank (message = "El nombre no puede estar vacio")
 	private String name;
 	
 	
 	@NotNull
+	@NotBlank (message = "La descripción no puede estar vacia")
 	private String description;
 	
 	
-	@NotNull
-	@Min(0)
+	@NotNull (message = "Escribe un numero porfavor")
+	@Min(value = 5 , message = "La cantidad solicitada deberia de ser mayor que 5 euros")
 	private Double budgetTarget;
 	
 	
 	@NotNull
+	@NotBlank (message = "La organizacion que reciba el dinero no puede estar vacia")
 	private String organization;
-	/**
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	private Owner owner;
-	**/
+	
 	@NotNull
 	private Boolean isClosed;
 	
@@ -62,15 +61,7 @@ public class Cause extends BaseEntity {
 		this.isClosed = isClosed;
 	}
 	
-	/**
-	public Owner getOwner() {
-		return owner;
-	}
-	
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-		**/	
+
 	public String getName() {
 		return name;
 	}
@@ -102,5 +93,4 @@ public class Cause extends BaseEntity {
 	public void setOrganization(final String organization) {
 		this.organization = organization;
 	}
-	
 }
