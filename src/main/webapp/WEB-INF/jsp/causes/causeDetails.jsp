@@ -8,7 +8,7 @@
 <petclinic:layout pageName="cause">
 
     <h2>
-        <th>Informacion de la causa</th>
+       Informacion de la causa
     </h2>
 
     <table id="causesDetails" class="table table-striped">
@@ -43,7 +43,7 @@
 
     <br />
     <h2>
-        <th>Donaciones</th>
+       Donaciones
     </h2>
 
     <table id="donationsTable" class="table table-striped">
@@ -64,4 +64,8 @@
             </c:forEach>
         </tbody>
     </table>
+    
+    <div>
+		<a href="/causes" class="btn btn-default">Volver</a>
+    </div>
 </petclinic:layout>
