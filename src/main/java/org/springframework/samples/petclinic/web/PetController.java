@@ -50,13 +50,15 @@ public class PetController {
 
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
+
 	private final PetService petService;
-    private final OwnerService ownerService;
+  private final OwnerService ownerService;
 
 	@Autowired
 	public PetController(PetService petService, OwnerService ownerService) {
 		this.petService = petService;
-                this.ownerService = ownerService;
+        this.ownerService = ownerService;
+        
 	}
 
 	@ModelAttribute("types")
@@ -161,7 +163,9 @@ public class PetController {
           model.addAttribute("message","Pet deleted");
           this.petService.deleteCascada(p);
           return "redirect:/owners/{ownerId}";
-        }    
-
+     }   
+     
+     
+     
     
 }

@@ -25,6 +25,8 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +46,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final String VIEWS_OWNER_PROFILE = "owners/ownerProfile";
+
 
 	private final OwnerService ownerService;
 
@@ -153,5 +157,24 @@ public class OwnerController {
 	        model.put("selections", results);
 	        return "/owners/ownersList";
 	    }
+	  
+	@GetMapping("/owners/profile")
+	public String OwnerProfile(@AuthenticationPrincipal User user, ModelMap model) {
+		Owner owner = ownerService.findOwnerByUsername(user.getUsername());
+		model.addAttribute("owner", owner);
+		return "owners/ownerProfile";
+	}
+	
+	@GetMapping("/owners/profile1")
+	public String OwnerProfile1(@AuthenticationPrincipal User user, ModelMap model) {
+		model.addAttribute("message", "Ya está creada la propuesta de adopción para esta mascota");
+		return OwnerProfile(user, model);
+	}
+	
+	@GetMapping("/owners/profile2")
+	public String OwnerProfile2(@AuthenticationPrincipal User user, ModelMap model) {
+		model.addAttribute("message", "Primero ponga en adopción su mascota");
+		return OwnerProfile(user, model);
+	}
 	
 }
