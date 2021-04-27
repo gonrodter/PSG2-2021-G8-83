@@ -11,6 +11,7 @@
        Informacion de la causa
     </h2>
 
+
     <table id="causesDetails" class="table table-striped">
         <tr>
             <th>Nombre</th>
@@ -68,4 +69,8 @@
     <div>
 		<a href="/causes" class="btn btn-default">Volver</a>
     </div>
+    
+    
+    
 </petclinic:layout>
+
