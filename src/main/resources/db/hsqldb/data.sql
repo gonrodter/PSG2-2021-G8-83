@@ -1,7 +1,7 @@
--- One admin user, named admin1 with passwor 4dm1n and authority admin
+-- One admin user, named admin1 with password 4dm1n and authority admin
 INSERT INTO users(username,password,enabled) VALUES ('admin1','4dm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
--- One owner user, named owner1 with passwor 0wn3r
+-- One owner user, named owner1 with password 0wn3r
 INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
 
@@ -32,7 +32,7 @@ INSERT INTO authorities(id,username,authority) VALUES (11,'owner9','owner');
 INSERT INTO users(username,password,enabled) VALUES ('owner10','0wn3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'owner10','owner');
 
--- One vet user, named vet1 with passwor v3t
+-- One vet user, named vet1 with password v3t
 INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
 
@@ -92,3 +92,6 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO booking(id,check_in,check_out,owner_id, pet_id) VALUES (1, '2013-01-01', '2013-01-01',1,1);
 
+INSERT INTO causes(id,budget_target,description,is_closed,name,organization) VALUES (1, '2340', 'Para ayudar a nuestras mascotas' , false, 'Por los animalicos', 'Animales S.L.');
+
+INSERT INTO donations(id,amount,client,date_of_donation,cause_id) VALUES (1,'53.52','Antonio','2019-03-22', 1);

@@ -34,11 +34,31 @@
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<span>Busqueda de propietarios</span>
 				</petclinic:menuItem>
+				
+				<sec:authorize access="hasAuthority('owner')">
+				<petclinic:menuItem active="${name eq 'ownersDetails'}" url="/owners/profile"
+					title="Mi Perfil">
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					<span>Mi Perfil</span>
+				</petclinic:menuItem>
+				</sec:authorize>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
 					title="Veterinarios">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Veterinarios</span>
+				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'adoptions'}" url="/allAdoptions"
+					title="Adopciones">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span>Adopciones</span>
+				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'causes'}" url="/causes"
+					title="causes">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Causes</span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"

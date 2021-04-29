@@ -88,6 +88,9 @@ public class PetService {
 	public void deleteCascada(final Pet p)  throws DataAccessException {
 		this.petRepository.deleteAllVisit(p.getId());
 		this.petRepository.deleteAllBooking(p.getId());
+		int adoptionId=this.petRepository.findAdoptionId(p.getId());
+		this.petRepository.deleteAllApplication(adoptionId);
+		this.petRepository.deleteAllAdoptions(p.getId());
 		this.petRepository.deletePetRepository(p.getId(), p.getOwner().getId());
 	    }
 
