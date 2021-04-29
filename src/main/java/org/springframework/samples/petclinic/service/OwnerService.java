@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -56,6 +57,20 @@ public class OwnerService {
 	public Owner findByUser(User username) throws DataAccessException {
 		return ownerRepository.findByUser(username);
 	}
+	
+	@Transactional
+	public Owner findOwnerByUsername(String username) throws DataAccessException {
+		Owner result = null;
+		Iterator<Owner> it = ownerRepository.findAll().iterator();
+		while(it.hasNext()) {
+			Owner elemento = it.next();
+			if(elemento.getUser().getUsername().equals(username)) {
+				return elemento;
+			}
+		}
+		return result;
+	}
+	
 
 	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {

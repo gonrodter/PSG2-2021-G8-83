@@ -26,10 +26,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.BaseEntity;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
-import org.springframework.samples.petclinic.model.Visit;
 
 /**
  * Spring Data JPA specialization of the {@link PetRepository} interface
@@ -88,4 +86,18 @@ public interface PetRepository extends Repository<Pet, Integer>, CrudRepository<
 	@Modifying
 	@Query("delete FROM Booking where pet.id =:petId")
 	public void deleteAllBooking(@Param("petId") int petId);
+	
+	@Query(value = "Select id from Adoptions where pet_id=?1", nativeQuery=true)
+	public int findAdoptionId(int petId);
+	
+	@Transactional
+	@Modifying
+	@Query(value ="delete FROM Application where adoption_id =?1", nativeQuery=true)
+	public void deleteAllApplication(int adoptionId);
+	
+	@Transactional
+	@Modifying
+	@Query(value ="delete FROM Adoptions where pet_id =?1", nativeQuery=true)
+	public void deleteAllAdoptions(int petId);
+	
 }
