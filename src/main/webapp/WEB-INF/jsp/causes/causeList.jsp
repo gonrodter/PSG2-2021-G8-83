@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <petclinic:layout pageName="causes">
 	<h2>
@@ -16,10 +17,8 @@
 				<th> Nombre </th>
 				<th>Cantidad obtenida</th>
 				<th>Cantidad solicitada</th>
-				<c:if test="${!cause.isClosed}">
-					<th></th>
-					<th></th>
-				</c:if>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,17 +32,17 @@
 					<td><c:out value="${entry.value}"/></td>
 						
 					<td><c:out value="${entry.key.budgetTarget}"/></td>
-					<c:if test="${!entry.key.isClosed}">
-						<td><spring:url value="causes/{causeId}/donations/new" var="createUrl">
-       							<spring:param name="causeId" value="${entry.key.id}"/>
-    						</spring:url>
-   							<a href="${fn:escapeXml(createUrl)}" class="btn btn-default">Crear donación</a>
-						</td>
-					</c:if>
+
+					<td><spring:url value="causes/{causeId}/donations/new" var="createUrl">
+       						<spring:param name="causeId" value="${entry.key.id}"/>
+    					</spring:url>
+   						<a href="${fn:escapeXml(createUrl)}" class="btn btn-default">Crear donaciÃ³n</a>
+					</td>
+
 					<td><spring:url value="/causes/{causeId}" var="detailsUrl">
        						<spring:param name="causeId" value="${entry.key.id}"/>
     					</spring:url>
-   						<a href="${fn:escapeXml(detailsUrl)}" class="btn btn-default">Detalles de donación</a>
+   						<a href="${fn:escapeXml(detailsUrl)}" class="btn btn-default">Detalles de donaciÃ³n</a>
 					</td>
 				</tr>
 				
