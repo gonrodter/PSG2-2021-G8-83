@@ -69,6 +69,7 @@ public class DonationController {
         	}
         }
         List<Double> donations = new ArrayList<>(this.donationService.findDonationsByCauses(causes));
+        double resto = cause.getBudgetTarget()-donations.get(n);
         if (result.hasErrors()) {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
@@ -77,7 +78,7 @@ public class DonationController {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
         }else if(cause.getBudgetTarget()-donations.get(n)-donation.getAmount()<0) {
-        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad esperada para la donación.");
+        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad maxima de "+resto+ " euros para la donación. " );
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
         }else if (donation.getAmount()<=0) {
@@ -85,7 +86,7 @@ public class DonationController {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
         }else if(donation.getClient()== "" ){
-            	model.addAttribute("message","No puede estar vacio");
+            	model.addAttribute("message","El nombre no puede estar vacio, si no quiere mostrar su identidad escriba anonimo");
             	model.put("donation", donation);
                 return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;	
          }else { 
