@@ -33,7 +33,7 @@
 						
 					<td><c:out value="${entry.key.budgetTarget}"/></td>
 
-					<td><spring:url value="causes/{causeId}/donations/new" var="createUrl">
+					<td><spring:url value="/causes/{causeId}/donations/new" var="createUrl">
        						<spring:param name="causeId" value="${entry.key.id}"/>
     					</spring:url>
    						<a href="${fn:escapeXml(createUrl)}" class="btn btn-default">Crear donación</a>
