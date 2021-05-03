@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -88,12 +89,12 @@ public interface PetRepository extends Repository<Pet, Integer>, CrudRepository<
 	public void deleteAllBooking(@Param("petId") int petId);
 	
 	@Query(value = "Select id from Adoptions where pet_id=?1", nativeQuery=true)
-	public int findAdoptionId(int petId);
+	public Optional<Integer> findAdoptionId(int petId);
 	
 	@Transactional
 	@Modifying
 	@Query(value ="delete FROM Application where adoption_id =?1", nativeQuery=true)
-	public void deleteAllApplication(int adoptionId);
+	public void deleteAllApplication(Integer adoptionId);
 	
 	@Transactional
 	@Modifying

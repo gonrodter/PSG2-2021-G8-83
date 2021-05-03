@@ -71,7 +71,7 @@ public class BookingController {
 				booking.setOwner(owner);
 				booking.setPet(pet);
 				this.bookingService.saveBooking(booking);
-				return "redirect:/owners/find";
+				return "redirect:/owners/{ownerId}";
 			}else {
 				return "owners/exceptionBooking";
 			}

@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -86,12 +87,18 @@ public class PetService {
 	
 	@Transactional
 	public void deleteCascada(final Pet p)  throws DataAccessException {
+		Optional<Integer> adoptionId=this.petRepository.findAdoptionId(p.getId());
+		if(!p.getVisits().isEmpty()) {
 		this.petRepository.deleteAllVisit(p.getId());
+		}
+		if(!p.getBooking().isEmpty()) {
 		this.petRepository.deleteAllBooking(p.getId());
-		int adoptionId=this.petRepository.findAdoptionId(p.getId());
-		this.petRepository.deleteAllApplication(adoptionId);
+		}
+		if(!p.getAdoptions().isEmpty() && adoptionId.get()!=null) {
+		this.petRepository.deleteAllApplication(adoptionId.get());
 		this.petRepository.deleteAllAdoptions(p.getId());
+		}		
 		this.petRepository.deletePetRepository(p.getId(), p.getOwner().getId());
-	    }
+	 }
 
 }
