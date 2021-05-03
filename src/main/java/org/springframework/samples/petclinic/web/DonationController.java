@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,14 @@ public class DonationController {
 	
     private final DonationService donationService;
     private final CauseService causeService;
+    
+    private final CauseController causeController;
 
     @Autowired
-    public DonationController(DonationService donationService, CauseService causeService) {
+    public DonationController(DonationService donationService, CauseService causeService, CauseController causeController) {
         this.donationService = donationService;
         this.causeService = causeService;
+        this.causeController = causeController;
     }
     
     @ModelAttribute("cause")
@@ -53,7 +57,14 @@ public class DonationController {
     public String initCreationForm(@PathVariable("causeId") int causeId, ModelMap model) {
         Donation donation = new Donation();
         model.put("donation", donation);
-        return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
+        Cause cause = causeService.findCauseById(causeId);
+        if(cause.getIsClosed() == true) {
+        	model.put("message", "La donación se ha completado. Gracias");
+        	return causeController.showCauseList(model);
+        }else {
+        	return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
+        }
+        
     }
 
     @PostMapping(value = "/donations/new")
@@ -69,6 +80,7 @@ public class DonationController {
         	}
         }
         List<Double> donations = new ArrayList<>(this.donationService.findDonationsByCauses(causes));
+        double resto = cause.getBudgetTarget()-donations.get(n);
         if (result.hasErrors()) {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
@@ -77,7 +89,7 @@ public class DonationController {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
         }else if(cause.getBudgetTarget()-donations.get(n)-donation.getAmount()<0) {
-        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad esperada para la donación.");
+        	model.addAttribute("message","La cantidad introducida ha superado a la cantidad maxima de "+resto+ " euros para la donación. " );
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
         }else if (donation.getAmount()<=0) {
@@ -85,7 +97,7 @@ public class DonationController {
         	model.put("donation", donation);
             return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
         }else if(donation.getClient()== "" ){
-            	model.addAttribute("message","No puede estar vacio");
+            	model.addAttribute("message","El nombre no puede estar vacio, si no quiere mostrar su identidad escriba anonimo");
             	model.put("donation", donation);
                 return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;	
          }else { 

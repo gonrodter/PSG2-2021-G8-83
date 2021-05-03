@@ -124,23 +124,27 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(deleteUrl)}">Borrar Mascota</a>
                             </td>
-                       </tr>
+                        </tr>
+                       <tr>
+                           <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/adoption" var="adoptionUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(adoptionUrl)}" class="btn btn-default">Dar en adopción</a> 
+                            </td>
+
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/adoptionRequests" var="adoptionUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(adoptionUrl)}" class="btn btn-default">Ver solicitudes de adopción</a>
+                            </td>
+                        </tr>
                     </table>
                 </td>
-                <td>
-                    <spring:url value="/owners/{ownerId}/pets/{petId}/adoption" var="adoptionUrl">
-                    <spring:param name="ownerId" value="${owner.id}"/>
-                    <spring:param name="petId" value="${pet.id}"/>
-                    </spring:url>
-                    <a href="${fn:escapeXml(adoptionUrl)}" style = "margin-top: 20%;" class="btn btn-default">Dar en adopción</a>
-                </td>
-                <td>
-                    <spring:url value="/owners/{ownerId}/pets/{petId}/adoptionRequests" var="adoptionUrl">
-                    <spring:param name="ownerId" value="${owner.id}"/>
-                    <spring:param name="petId" value="${pet.id}"/>
-                    </spring:url>
-                    <a href="${fn:escapeXml(adoptionUrl)}" style = "margin-top: 20%;" class="btn btn-default">Ver solicitudes de adopción</a>
-                </td>
+                
             </tr>
 
         </c:forEach>
