@@ -59,7 +59,7 @@ public class DonationController {
         model.put("donation", donation);
         Cause cause = causeService.findCauseById(causeId);
         if(cause.getIsClosed() == true) {
-        	model.put("message", "Hola");
+        	model.put("message", "La donación se ha completado. Gracias");
         	return causeController.showCauseList(model);
         }else {
         	return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
