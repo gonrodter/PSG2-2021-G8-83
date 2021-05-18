@@ -50,7 +50,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day           | LAUSALBRA     | ALVSEVCAB      | DANRICOST      | GONRODTER      | LUCTORGOM      | 
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | 
 | Day 1         |               | :smiley:       |                | :neutral_face: |                |
-| Day 2         |               | :worried       |                | :worried:      |                |
+| Day 2         |               | :worried:      |                | :worried:      |                |
 | Day 3         |               | :neutral_face: |                | :neutral_face: |                |          
 | Day 4         |               | :smiley:       |                | :smiley:       |                |
 | Day 5         |               |                |                |                |                |  
