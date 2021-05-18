@@ -30,7 +30,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 5         |    :fearful:   (I´m desperate, I need help)        |
 
 
-## Sprint Template
+## Sprint 3 Template
 
 | Day           | LAUSALBRA     | ALVSEVCAB      | DANRICOST      | GONRODTER      | LUCTORGOM      | 
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | 
@@ -42,7 +42,21 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 6         | :smiley:      | :worried:      | :smiley:       | :neutral_face: |   :smiley:     |  
 | Day 7         | :neutral_face:| :smiley:       | :smiley:       | :smiley:       |  :worried:     |  
 | Day 8         | :smiley:      | :smiley:       | :smiley:       | :smiley:       |  :smiley:      | 
-| Day 9         |               | :smiley:       |                |                |                | 
-| Day 10        |               | :neutral_face: |                |                |                | 
-| Day 11        |               |                |                |                |                | 
+
+
+
+## Sprint 4 Template
+
+| Day           | LAUSALBRA     | ALVSEVCAB      | DANRICOST      | GONRODTER      | LUCTORGOM      | 
+| ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | 
+| Day 1         |               | :smiley:       |                | :neutral_face: |                |
+| Day 2         |               | :neutral_face: |                | :worried:      |                |
+| Day 3         |               |                |                | :neutral_face: |                |          
+| Day 4         |               |                |                | :smiley:       |                |
+| Day 5         |               |                |                |                |                |  
+| Day 6         |               |                |                |                |                |  
+| Day 7         |               |                |                |                |                |  
+| Day 8         |               |                |                |                |                | 
+| Day 9         |               |                |                |                |                | 
+
 
