@@ -99,9 +99,9 @@ public class DonationController {
         }else if(donation.getClient()== "" ){
             	model.addAttribute("message","El nombre no puede estar vacio, si no quiere mostrar su identidad escriba anonimo");
             	model.put("donation", donation);
-                return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;	
-         }else { 
-        
+                return VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
+    	}else {
+    		
         	donation.setCause(cause);
         	donation.setDate(LocalDate.now());
             this.donationService.saveDonation(donation);
