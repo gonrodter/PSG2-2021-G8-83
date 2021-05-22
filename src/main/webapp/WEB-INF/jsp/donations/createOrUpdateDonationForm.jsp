@@ -8,6 +8,7 @@
 
 <petclinic:layout pageName="donations">
 
+
     <jsp:body>
     <h2>
         <c:if test="${donation['new']}">Nueva donación</c:if>
@@ -21,7 +22,16 @@
                         <c:out value="${cause.name}"/>
                     </div>
              </div>
-             <petclinic:inputField label= "Cantidad" name="Amount"/>
+             
+             <%-- <petclinic:inputField label= "Cantidad" name="Amount"/> --%>
+             
+             <div class="form-group">
+                    <label class="col-sm-2 control-label">Cantidad: </label>
+                    <div class="col-sm-10">
+                        <input type="number" step="any" id="Amount" name="Amount" value="${donation.amount }">
+                    </div>
+             </div>
+             
             <petclinic:inputField label= "Cliente" name="client" />
 
       		
