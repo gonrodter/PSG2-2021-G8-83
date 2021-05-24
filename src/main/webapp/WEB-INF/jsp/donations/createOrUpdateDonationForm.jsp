@@ -5,13 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <petclinic:layout pageName="donations">
 
 
     <jsp:body>
     <h2>
-        <c:if test="${donation['new']}">Nueva donación</c:if>
+        <c:if test="${donation['new']}">Nueva donaciÃ³n</c:if>
     </h2>
     <form:form modelAttribute="donation" class="form-horizontal" id="add-donation-form">
         <div class="form-group has-feedback">
@@ -40,7 +41,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${donation['new']}">
-                        <button class="btn btn-default" type="submit">Añadir donación</button>
+                        <button class="btn btn-default" type="submit">AÃ±adir donaciÃ³n</button>
                     </c:when>
                 </c:choose>
             </div>
