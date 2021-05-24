@@ -18,8 +18,15 @@
              
             <petclinic:inputField label= "Nombre" name="name"/>
             <petclinic:inputField label= "Descripcion" name="description"/>
-            <petclinic:inputField label= "Cantidad Solicitada" name="budgetTarget"/>
+            <!-- <petclinic:inputField label= "Cantidad Solicitada" name="budgetTarget"/> -->
             <petclinic:inputField label="Organizacion" name="organization"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Cantidad Solicitada </label>
+                <div class="col-sm-10">
+                    <input type="number" step="any" id="budgetTarget" name="budgetTarget" value="${cause.budgetTarget }">
+                </div>
+            </div>
+            
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

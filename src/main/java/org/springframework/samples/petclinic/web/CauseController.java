@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
@@ -29,6 +30,7 @@ import org.springframework.samples.petclinic.model.Donation;
 import org.springframework.samples.petclinic.service.CauseService;
 import org.springframework.samples.petclinic.service.DonationService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,10 +76,15 @@ public class CauseController {
         }
 
         @PostMapping(value = "/causes/new")
-        public String processCreationForm(@Valid Cause cause, BindingResult result) {
-            if (result.hasErrors()) {
+        public String processCreationForm(@Valid Cause cause, BindingResult result, ModelMap model) {
+        	Double amount = cause.getBudgetTarget();
+        	if (result.hasErrors()) {
                 return VIEWS_CAUSE_CREATE_OR_UPDATE_FORM;
-            } else {
+        	}else if (amount==null) {
+            	model.addAttribute("message","La cantidad solicitada no puede estar vacia.");
+            	model.put("cause", cause);
+                return VIEWS_CAUSE_CREATE_OR_UPDATE_FORM;
+            }else {
                 this.causeService.saveCause(cause);
                 return "redirect:/causes";    
             }
