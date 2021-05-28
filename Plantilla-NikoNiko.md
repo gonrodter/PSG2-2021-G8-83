@@ -49,12 +49,12 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           | LAUSALBRA     | ALVSEVCAB      | DANRICOST      | GONRODTER      | LUCTORGOM      | 
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | 
-| Day 1         |               | :smiley:       | :worried:      | :neutral_face: | :neutral_face: |
-| Day 2         |               | :worried:      | :neutral_face: | :worried:      | :worried:      |
-| Day 3         |               | :neutral_face: | :smiley:       | :neutral_face: | :smiley:       |          
-| Day 4         |               | :smiley:       | :neutral_face: | :smiley:       | :neutral_face: |
-| Day 5         |               | :smiley:       | :neutral_face: | :neutral_face: | :smiley:       |  
-| Day 6         |               | :neutral_face: | :smiley:       | :smiley:       | :neutral_face: |               |  
+| Day 1         | :neutral_face:| :smiley:       | :worried:      | :neutral_face: | :neutral_face: |
+| Day 2         | :neutral_face:| :worried:      | :neutral_face: | :worried:      | :worried:      |
+| Day 3         | :smiley:      | :neutral_face: | :smiley:       | :neutral_face: | :smiley:       |          
+| Day 4         | :neutral_face:| :smiley:       | :neutral_face: | :smiley:       | :neutral_face: |
+| Day 5         | :smiley:      | :smiley:       |                | :neutral_face: | :smiley:       |  
+| Day 6         | :neutral_face:| :neutral_face: |                | :smiley:       | :neutral_face: |               |  
 | Day 7         |               |                |                |                |                |  
 | Day 8         |               |                |                |                |                | 
 | Day 9         |               |                |                |                |                | 
